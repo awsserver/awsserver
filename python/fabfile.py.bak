@@ -1,0 +1,19 @@
+from fabric.api import env, run
+
+env.hosts = ['localhost',
+             'localhost',
+             'localhost']
+
+# Set the username
+env.user   = "kadmin"
+
+# Set the password [NOT RECOMMENDED]
+env.password = "sunday1980"
+def mytask():
+    run('uname -a')
+def copy():
+    # make sure the directory is there!
+    run('mkdir -p /home/userX/mynewfolder')
+
+    # our local 'localdirectory' (it may contain files or subdirectories)
+    put('/home/kadmin/python', '/home/userX/mynewfolder')

@@ -1,0 +1,34 @@
+<html><head>
+<title>ex17.py</title>
+<meta name="Generator" content="htmlizer/[twisted, version 13.2.0]" />
+<link rel="alternate" href="ex17.py" type="text/x-python" />
+
+</head>
+<body>
+<pre><span class="py-src-comment">#!/usr/bin/python</span>
+<span class="py-src-keyword">from</span> <span class="py-src-variable">sys</span> <span class="py-src-keyword">import</span> <span class="py-src-variable">argv</span>
+<span class="py-src-keyword">from</span> <span class="py-src-variable">os</span>.<span class="py-src-variable">path</span> <span class="py-src-keyword">import</span> <span class="py-src-variable">exists</span>
+
+<span class="py-src-variable">script</span>, <span class="py-src-variable">from_file</span>, <span class="py-src-variable">to_file</span> = <span class="py-src-variable">argv</span> 
+
+<span class="py-src-keyword">print</span> <span class="py-src-string">"Copying from %s to %s"</span> % (<span class="py-src-variable">from_file</span>, <span class="py-src-variable">to_file</span>)
+
+<span class="py-src-comment"># We could do there two on one line, How ?</span>
+
+<span class="py-src-variable">in_file</span> = <span class="py-src-variable">open</span>(<span class="py-src-variable">from_file</span>)
+<span class="py-src-variable">indata</span> = <span class="py-src-variable">in_file</span>.<span class="py-src-variable">read</span>()
+
+<span class="py-src-keyword">print</span> <span class="py-src-string">"The input file is %d byte long"</span> % <span class="py-src-variable">len</span>(<span class="py-src-variable">indata</span>)
+
+<span class="py-src-keyword">print</span> <span class="py-src-string">"Does the output file exist? %r"</span> % <span class="py-src-variable">exists</span>(<span class="py-src-variable">to_file</span>)
+<span class="py-src-keyword">print</span> <span class="py-src-string">"Ready, hit RETURN to Continue, CTRL+C to abort."</span>
+<span class="py-src-variable">raw_input</span>()
+
+<span class="py-src-variable">out_file</span> = <span class="py-src-variable">open</span>(<span class="py-src-variable">to_file</span>, <span class="py-src-string">'w'</span>)
+<span class="py-src-variable">out_file</span>.<span class="py-src-variable">write</span>(<span class="py-src-variable">indata</span>)
+
+<span class="py-src-keyword">print</span> <span class="py-src-string">"Alright, all done."</span>
+<span class="py-src-variable">out_file</span>.<span class="py-src-variable">close</span>()
+<span class="py-src-variable">infile</span>.<span class="py-src-variable">close</span>()
+</pre>
+</body>

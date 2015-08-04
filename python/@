@@ -1,0 +1,35 @@
+#!/usr/bin/python
+from sys import argv
+
+script  = argv
+
+def print_all(sunny):
+	print sunny.read()
+
+def rewind(sunny):
+	sunny.seek(0)
+
+def print_a_line(line_count, sunny):
+	print line_count, sunny.readline()
+
+current_file = raw_input('Enter the Name of file ')
+read()
+print "First let`s print the whole file:\n"
+
+print_all(str(current_file))
+
+print "Now let`s rewind, kind of like a tape."
+
+rewind(str(current_file))
+
+print "Let`s print three lines:"
+
+current_line = 1
+print_a_line(current_line, str(current_file))
+
+current_line = current_line + 1
+print_a_line(current_line, str(current_file))
+
+current_line = current_line + 1
+print_a_line(current_line, str(current_file))
+
