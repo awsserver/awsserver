@@ -1,0 +1,347 @@
+We need three Server One with DNS-Server Configuration
+=======================================================
+DNS-ENTRY FOR THIS PRACTICAL IS AS FOLLOW
+
+haproxy.justdevops.com.		IN	A	54.232.146.42  
+web1.justdevops.com.		IN	A	54.207.198.22
+web2.justdevops.com.		IN	A	54.207.231.183
+
+www.justdevops.com.             IN      CNAME   haproxy.justdevops.com.
+
+
+========================================================
+web1.justdevops.com.			54.207.198.22  [APACHE-WEB-SERVER-1]
+web2.justdevops.com.			54.207.231.183 [APACHE-WEB-SERVER-1]
+haproxy.justdevops.com.			54.232.146.42  [NGINX-WEB-CUM-PROXY-CUM-LOAD-BALANCER-SERVER-1]
+========================================================
+SETTING FOR WEB-SERVER-2
+yum install httpd
+
+vim/etc/httpd/conf/httpd.conf
+
+Listen 8080
+
+<VirtualHost web2.justdevops.com:8080>
+    ServerAdmin sunnysharma@web2.justdevops.com
+    DocumentRoot /var/www/web2.justdevops.com
+    ServerName web2.justdevops.com
+    ErrorLog logs/justdevops.com-error_log
+    CustomLog logs/justdevops.com-access_log common
+</VirtualHost>
+==============================
+mkdir /var/www/web2.justdevops.com
+vim index.html
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>web2.justdevops.com</h1>
+
+<p>This is web2.justdevops.com.</p>
+
+</body>
+</html>
+==============================
+service httpd restart
+
+===============================
+SETTING FOR WEB-SERVER-1
+yum install httpd
+
+vim/etc/httpd/conf/httpd.conf
+
+Listen 8080
+
+<VirtualHost web1.justdevops.com:8080>
+    ServerAdmin sunnysharma@web1.justdevops.com
+    DocumentRoot /var/www/web1.justdevops.com
+    ServerName web1.justdevops.com
+    ErrorLog logs/justdevops.com-error_log
+    CustomLog logs/justdevops.com-access_log common
+</VirtualHost>
+==============================
+mkdir /var/www/web1.justdevops.com
+vim index.html
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>web1.justdevops.com</h1>
+
+<p>This is web1.justdevops.com.</p>
+
+</body>
+</html>
+==============================================================================================================================================================
+HOW TO INSTALL APACHE IN UBUNTU SERVER
+===============================================================================================================================================================
+service httpd restart
+HOW TO INSTALL APACHE SERVER IN UBUNTU OPERTAIING SYSTEM
+
+CENTOS HTTPD SERVER USERNAME/GROUPNAME  = APACHE:APACHE
+UBUNTU HTTPD SERVER USERNAME/GROUPNAME  = APACHE:WWW-DATA
+
+=================================================================================
+[root@web3.justdevops.com:~]# apt-get install apache2
+
+[root@web3.justdevops.com:~]# /etc/init.d/apache2 status
+ * apache2 is running
+
+[root@web3.justdevops.com:~]# cd /etc/apache2/
+
+[root@web3.justdevops.com:/etc/apache2]# ls
+apache2.conf  conf-available  conf-enabled  envvars  magic  mods-available  mods-enabled  ports.conf  sites-available  sites-enable
+
+=================================================================================
+DON`T CHANGE THIS FILE WITHOUT KNOWLEDGE
+=================================================================================
+[root@web3.justdevops.com:/etc/apache2]# vim /etc/apache2/apache2.conf 
+
+#
+PidFile ${APACHE_PID_FILE}
+
+# number of second that process still waiting for incoming request 300 = 5 minute
+Timeout 300
+
+#If On multiple request servers with single connection if OFF only one request server with single connection
+KeepAlive On
+
+# Bydefault its 100 for production envirement generally we set it 400 / 500 FOR 16 GB MACHINE
+MaxKeepAliveRequests 100
+
+KeepAliveTimeout 5
+
+# Always keep OFF
+HostnameLookups Off
+
+ErrorLog ${APACHE_LOG_DIR}/error.log
+
+LogLevel warn
+
+IncludeOptional mods-enabled/*.load
+
+IncludeOptional mods-enabled/*.conf
+
+# ALL the port use by for different website are kept in port.conf file 
+Include ports.conf
+
+# its doesn`t allow any of the access /mean root level folder 
+<Directory />
+        Options FollowSymLinks
+        AllowOverride None
+        Require all denied
+</Directory>
+
+# for ftp you can use /usr/share where all the read write permission granted 
+<Directory /usr/share>
+        AllowOverride None
+        Require all granted
+</Directory>
+
+#It server all the data from /var/www/
+<Directory /var/www/>
+        Options Indexes FollowSymLinks
+        AllowOverride None
+        Require all granted
+</Directory>
+
+================================================================================
+YOU CAN CHANGE THE CONFIGURATION IN PORT.CONF OR IF YOU WANT ADD A NEW WEBSITE FOR SHARE HOSTING KIND OF THING YOU CAN DEFINE INSIDE SITE AVAILABLE
+BY DEFAULT INSIDE IT THERE IS SMAPLE FILE [000-default.conf] & [default-ssl.conf]
+=================================================================================
+
+[root@web3.justdevops.com:/etc/apache2/sites-available]# vim 000-default.conf 
+
+<VirtualHost *:80>
+     
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/html
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+</VirtualHost>
+=================================================================================
+MOST IMPORTANT DIRECTIVES
+=================================================================================
+
+1. ServerRoot = specifies top level directory
+2. KeepAlive = Weather server allow more than one request per connection.
+3. StartServes = Sets how many process are created upon startup.
+4. MaxRequestPerChild = Set total number of process each child process server before the child dies.
+5. MaxClients = Set a limit on total number of server processes that can run at one time.
+6. MinSpareServes = if number of servers waiting for a request is less then MinSpareServes, It create some
+7. MaxSpareServes = if number of servers waiting for a request is less then MinSpareServes, It kills some
+
+==================================================================================
+MODES OF APACHE PRE-fORK MODE AND WORKER MODE
+==================================================================================
+
+1. PRE-FORKED MODE CREATE ONE THREAD PER PROCESS, EACH OF WHICH HANDLE ONE USER REQUEST & HANDLE ONE CONNECTION ONLY. THIS PROCESS IS THREAD-SAFE.
+   USE THIS MODE WHEN CPU CONSUMPTION IS HIGH
+2. WORKER MODE CREATE NEW PROCESS TOO BUT EACH HAS MORE THAN ONE THREAD EACH THREAD HANDLE ONE REQUEST PER USER & PROCESS HANDLE MORE THAN ONE CONNECTION.
+   USE THIS MODE WHEN MEMORY CONSUMPTION IS HIGH
+
+=================================================================================
+APACHE TUNINIG
+http://www.monitis.com/blog/2011/07/05/25-apache-performance-tuning-tips/
+=================================================================================
+
+1. REMOVE UNUSED MODULES
+2. Use mod_disk_cache NOT mod_mem_cache - mod_mem_cache will not share its cache amongst different apache processes
+3. Configure mod_disk_cache with a flat hierarchy – ensure that you are using CacheDirLength=2 and CacheDirLevels=1 to 
+ensure htcacheclean will not take forever when cleaning up your cache directory.
+4. Setup appropriate Expires, Etag, and Cache-Control Headers 
+5. Put Cache on separate disk
+6. Use Piped Logging instead of direct logging
+7. Log to a different disk than disk serving pages
+8. Utilize mod_gzip/mod_deflate
+9. Turn HostnameLookups Off
+10. Avoid using hostname in configs
+11. Use Persistent Connections - Set KeepAlive On 
+12. Do Not set KeepAliveTimeout too high
+13. Disable .htaccess - i.e. AllowOverride None  This will prevent apache from having to check for a .htaccess file on each request.
+14. Allow symlinks – i.e. Options +FollowSymLinks -SymLinksIfOwnerMatch.  Otherwise, apache will make a separate call on each filename 
+    to ensure it is not a symlink.
+15. Set ExtendedStatus Off
+16. Avoid Wildcards in DirectoryIndex
+
+================================================================================
+OS LEVEL TUNING
+================================================================================
+
+17. Increase Swappiness =particularly on single site hosts this will increase performance.  On linux systems increase /proc/sys/vm/swappiness to at 
+    least 60 if not greater
+18. Increase Write Buffer Size =  increase your write buffer size for tcp/ip buffers.  On linux systems increase /proc/sys/net/core/wmem_max and 
+    /proc/sys/net/core/wmem_default
+19. Increase Max Open Files – if you are handling high loads increase the number of allowed open files.  On linux, increase /proc/sys/fs/file-max and 
+    run ulimit -H -n 4096.
+	
+================================================================================	
+Application LEVEL TUNING 
+================================================================================
+
+20. Setup Frontend proxy for images and stylesheets – allow your main web servers to process the application while images and stylesheets are served from 
+    frontend webservers
+21. Use mod_passenger for rails – mod_passenger is able to share memory and resources amongst several processes, allowing for faster spawning of new application
+    instances.  It will also monitor these processes and remove them when they are unnecessary.
+22. Turn off safe_mode for php – it will utilize about 50-70% of your script time checking against these safe directives.  Instead configure open_base_dir 
+    properly and utilize plugins such as mod_itk.
+23. Don’t use threaded mpm with mod_php – look at using mod_itk, mod_php tends to segfault with threaded mpm.
+24. Flush buffers early for pre-render - it takes a relatively long time to create a web page on the backend, flush your buffer prior to page completion to 
+    send a partial page to the client, so it can start rendering.  A good place to do this is right after the HEAD section – so that the browser can start 
+	fetching other objects.
+25. Use a Cache for frequently accessed data - memcached is a great for frequently used data and sessions.  It will speed up your apache render time as 
+    databases are slow.
+
+=================================================================================
+WHY NGINX
+=================================================================================
+
+1. IT SOLVE THE PROBLEM OF BLOCKING CALLS
+2. IT TAKE CARE OF SINGLE THREDED MODEL.
+3. IT CAN SERVER 10K REQUEST CONCURRENT CONNECTION/SOCKETS?
+4. 100 MILLIONS OR REQUEST GETTING SERVERS BY NGINX.
+
+NGINX IS HIGH PERFORMANCE WEB SERVERS. WHICH IS DESIGENED FOR SCALABILITY.
+1. IT IS EVENT DRIVEN MODEL SO CAN SERVER REQUEST MORE QUICKER AND WITH LESS MEMORY.
+2. NGINX DOES NOT CREATE NEW PROCESSES FOR EACH WEB REQUEST. EACH WORKER CAN HANDLE THOUSNAD OF CONCURRENT CONNECTIONS.
+3. NGINIX IS ALSO WORK AS PROXY SERVER FOR APACHE AND ALSO ACTS AS LOAD BALANCER.
+4. NGINX IS BETTER IF YOU WANT TO SERVER STATIC CONTENT FOR DYNAMIC CONTENT LIKE SCRIPTING LANGUAGE USE APACHE. BECAUSE APACHE USES MODULE TO HANDLE BACKEND
+   APPLICATION SERVER.
+
+==============================================================================
+NOW SETUP NGINX AS WEB-SERVER+PROXY+LOADBALANCER
+==============================================================================
+
+[root@haproxy.justdevops.com:~]# yum install epel-release
+[root@haproxy.justdevops.com:~]# yum install nginx
+
+[root@haproxy.justdevops.com:/etc/nginx]# ls
+conf.d        fastcgi.conf.default    koi-utf     mime.types.default  scgi_params          uwsgi_params.default
+default.d     fastcgi_params          koi-win     nginx.conf          scgi_params.default  win-utf
+fastcgi.conf  fastcgi_params.default  mime.types  nginx.conf.default  uwsgi_params
+
+==============================================================================
+HOW TO TUNE NGNIX TO OPTIMIZE
+==============================================================================
+[root@haproxy.justdevops.com:~]# vim /etc/nginx/nginx.conf
+
+# NUMBER OF CORE SERVIING THE REQUEST SET ACCORIDING TO YOUR SYSTEM CORE VALUE
+worker_processes  1;
+
+
+# NUMBER OF REQUEST SERVER BY PER WORKER BY DEFUALT ITS 1024 BUT FOR PRODUCTION YOU CAN SET UP 10000. IT CAN SERVER 40000 REQUEST AT A GIVEN POINT. BECAUSE 
+# GENERALLY EACH BROWSER TAKES TWO CONNECTION, SO WORKER_CONNECTION BECOME HALF
+worker_connections  1024;
+
+
+# YOU CAN KEEP IT ON/OFF BUT IF ON AT A GIVEN POINT IT CAN SERVE MULTIPLE REQUEST FOR A SINGLE CONNECTION.
+multi_accept on;
+
+
+# FOR COMPRESSING THE FILE IT ALMOST COMPRESS 70% TO 80%
+gzip  on;
+gzip_disable "msie6";
+
+
+# BY DEFUALT GZIP COMPRESSION LEVEL IS 6 FIR PRODUCTION KEEP 2
+gzip_comp_level 2;
+
+
+# ALWAYS KEEP BUFFER SIZE ON BECASUE THEY ARE VERY HELPFUL TO SETTING UP MEMORY IF YOU COMPRESSION FILE NOT FIT IN MEMORY IT WILL GO ON I/O DISK
+gzip_buffers 1054 512k;
+
+
+# ALWAYS ON GZIP SETTING FOR FOLLOWING TYPE OF FILE 
+gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;
+
+
+# THIS IS THE BUFFER SIZE IF THERE IS NUMBER OF REQUEST COMING THEN IT KEEP THE REQUEST IN QUEUE AND SERVER.
+# THIS HANDLE THE CLIENT BUFFER SIZE , MEANING ANY POST ACTION SENT TO NGINX. POST ACTION IS TYPICALLY ONLINE FORM SUBMISSION.
+client_body_buffer_size 10k;
+
+
+# THIS HANDLES THE CLIENT HEADER SIZE. FOR ALL INTENTS & PURPOSES, 1K IS USUALLY A DECENT SIZE FOR THIS DIRECTIVES.
+client_header_buffer_size 1k;
+
+# THE MAXIMUM ALLOW SIZE FOR A CLIENT REQUEST.IF MAXIMUM SIZE EXCEEDED THEN NGINX WILL SPIT OUT 413 ERROR OR REQUEST ENTITY TOO LARGE. IF YOU ARE SERVING 
+#VIDEO FORMAT YOU CAN INCREASE THIS BUFFER SIZE. THIS IS MAXIMUM DOWNLOAD SIZE ALLOW.
+client_max_body_size 8m;
+
+# THE MAXIMUM NUMBER AND SIZE OF BUFFER FOR LARGE CLIENT HEADERS. GENERALLY 100 K IS GOOD ENOUGH.
+large_client_header_buffers 2 1k;
+
+
+
+==========================================
+[root@haproxy.justdevops.com:~]# vim /etc/nginx/nginx.conf
+ upstream webserver {
+                server 54.207.198.22:8080 weight=1;
+                server 54.207.231.183:8080 weight=1;
+        }
+
+    server {
+      listen    80;
+       server_name _;
+       access_log  /var/log/nginx/haproxy.access.log  main;
+       location / {
+       proxy_pass       http://webserver;
+                  }
+           }
+==============================================
+[root@haproxy.justdevops.com:~]# service nginx restart
+Stopping nginx:                                            [  OK  ]
+Starting nginx:                                            [  OK  ]
+==============================================================================================================================================================
+   
+
+
+
+
+
+
+
+

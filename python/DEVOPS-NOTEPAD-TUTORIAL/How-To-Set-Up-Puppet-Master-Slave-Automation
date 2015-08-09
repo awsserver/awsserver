@@ -1,0 +1,315 @@
+htpp://stackshare.io/posts/how-docker-fits-into-the-current-devops-landscape
+http://seriousbirder.com/blogs/puppet-aix-module-fails-incorrect-package-and-dependency-error/
+https://docs.puppetlabs.com/references/latest/type.html
+	IN This Tutorial We are going to install PUPPET-MASTER & PUPPET-SLAVE SERVER
+===============================================================================
+
+54.207.198.22   puppetm 	puppetm.justdevops.com 	[MASTER-SERVER] CENTOS-6.5-64-BIT
+54.207.231.183  puppets 	puppets.justdevops.com	[SLAVE-SERVER]  CENTOS-6.5-64-BIT
+
+
+========================================================================================================================================================
+PUPPET-MASTER-SERVER-CONFIGURATION:-
+STEP-1:-chnage hostname of master server and put following  entery in /etc/host,  /etc/sysconfig/network & ~/.bashrc
+=========================================================================================================================================================
+
+[root@puppetm.justdevops.com:~]# hostname puppetm.justdevops.com
+
+[root@puppetm.justdevops.com:~]# vim /etc/hosts
+54.207.198.22   puppetm puppetm.justdevops.com
+54.207.231.183  puppets puppets.justdevops.com
+
+
+[root@puppetm.justdevops.com:~]# vim /etc/sysconfig/network
+HOSTNAME=puppetm.justdevops.com
+
+
+[root@puppetm.justdevops.com:~]# vim ~/.bashrc
+PS1='\[\e[1;33m\][\u@$HOSTNAME:\w]\$\[\e[0m\] '
+echo "BE ALERT NOW YOU ARE WORKING ON ROOT SHELL"
+
+================================================================================
+STEP-2:- NOW INSTALL IMPORTANT REPOSITORY
+================================================================================
+
+[root@puppetm.justdevops.com:~]# rpm -Uvh https://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+
+===============================================================================
+INSTALL MASTER PUPPET SERVER ON MASTER MACHINE 
+=================================================================================
+
+[root@puppetm.justdevops.com:~]# yum install puppet-server
+
+
+[root@puppetm.justdevops.com:~]# service puppetmaster start
+Starting puppetmaster:                                     [  OK  ]
+
+===================================================================================
+ALL CONFIGURATION OF PUPPET-MASTER ARE UNDER DIRECTORY [/etc/puppet]
+===================================================================================
+
+[root@puppetm.justdevops.com:~]# cd /etc/puppet/
+[root@puppetm.justdevops.com:/etc/puppet]# ls
+auth.conf  fileserver.conf  manifests  modules  puppet.conf
+
+==================================================================================
+PUPPET MAIN CONFIGURATION FILE IS [ /etc/puppet/puppet.conf ] NEVER EDIT THIS FILE ON SERVER SIDE
+==================================================================================
+
+[root@puppetm.justdevops.com:~]# vim /etc/puppet/puppet.conf 
+
+==================================================================================
+LIST THE PUPPET CERTIFICATE WITH THIS COMMAND PUPPET SERVER COMMUNICATE WITH THEIR SLAVE BY CERTIFICATE (ASYMETRIC-KEY)
+==================================================================================
+
+[root@puppetm.justdevops.com:~]# puppet cert list -a
++ "puppetm.justdevops.com" (ED:86:74:4B:7F:3B:0F:C4:9C:FF:27:52:82:F1:8E:00) (alt names: "DNS:puppet", "DNS:puppet.justdevops.com", "DNS:puppetm.justdevops.com")
+
+==================================================================================
+NOTE-FOR INTRACTION WITH MASTER SERVER WE ARE GOING TO EDIT  [ /etc/puppet/puppet.conf ] AT CLIENT SIDE
+IN THIS FILE WE ARE APPEND MASTER SERVER HOSTNAME [ server=puppetm.justdevops.com ] in [ MAIN ] 
+==================================================================================
+
+[root@puppets.justdevops.com:~]# vim /etc/puppet/puppet.conf 
+[main]
+server=puppetm.justdevops.com
+
+[root@puppets.justdevops.com:~]# service puppet start
+Starting puppet:                                           [  OK  ]
+
+==================================================================================
+NOW WE ARE AGAIN CHECK PUPPET SERVER INTRACTION WITH WHICH SERVER
+==================================================================================
+
+[root@puppetm.justdevops.com:~]# puppet cert list -a
+  "puppets.justdevops.com" (8F:24:22:96:E1:99:BE:2A:EE:C8:29:1F:12:E7:90:3D)
++ "puppetm.justdevops.com" (ED:86:74:4B:7F:3B:0F:C4:9C:FF:27:52:82:F1:8E:00) (alt names: "DNS:puppet", "DNS:puppet.justdevops.com", "DNS:puppetm.justdevops.com")
+
+=================================================================================
+NOW WE ARE GOING TO ADD THIS SLAVE ON MASTER SERVER
+=================================================================================
+
+[root@puppetm.justdevops.com:~]# puppetca --sign puppets.justdevops.com
+notice: Signed certificate request for puppets.justdevops.com
+notice: Removing file Puppet::SSL::CertificateRequest puppets.justdevops.com at '/var/lib/puppet/ssl/ca/requests/puppets.justdevops.com.pem'
+
+================================================================================
+NOW WE ARE GOING TO TEST MASTER AND SLAVE CONNECTIVITY FROM SLAVE SIDE 
+================================================================================
+
+[root@puppets.justdevops.com:~]# puppetd --server puppetm.justdevops.com --test
+info: Caching catalog for puppets.justdevops.com
+info: Applying configuration version '1439047330'
+
+[root@puppets.justdevops.com:~]# puppetd --server puppetm.justdevops.com --waitforcert 60 --test
+info: Caching catalog for puppets.justdevops.com
+info: Applying configuration version '1439047504'
+notice: Finished catalog run in 0.11 seconds
+
+=================================================================================
+THIS COMMAND IS USED TO CHECK PUPPET MASTER SERVER CERTIFICATE NAME
+=================================================================================
+[root@puppetm.justdevops.com:~]# puppet config print certname
+puppetm.justdevops.com
+
+================================================================================
+THIS COMMAND IS USED TO CHECK PUPPET AGENT FROM SLAVE SIDE
+================================================================================
+[root@puppets.justdevops.com:~]# puppet agent --test
+info: Caching catalog for puppets.justdevops.com
+info: Applying configuration version '1439049165'
+notice: Finished catalog run in 0.04 seconds
+
+===============================================================================
+IMPROTANT FILE PUPPET-MASTER SERVER
+================================================================================
+[root@puppetm.justdevops.com:~]# cat /etc/sysconfig/puppet
+# The puppetmaster server
+#PUPPET_SERVER=puppet
+
+# If you wish to specify the port to connect to do so here
+#PUPPET_PORT=8140
+
+# Where to log to. Specify syslog to send log messages to the system log.
+#PUPPET_LOG=/var/log/puppet/puppet.log
+
+# You may specify other parameters to the puppet client here
+#PUPPET_EXTRA_OPTS=--waitforcert=500
+
+================================================================================
+SERVICE FOR PUPPET IS
+================================================================================
+[root@puppetm.justdevops.com:~]# netstat -ntlp 
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address               Foreign Address             State       PID/Program name   
+tcp        0      0 0.0.0.0:8140                0.0.0.0:*                   LISTEN      6861/ruby           
+tcp        0      0 0.0.0.0:22                  0.0.0.0:*                   LISTEN      889/sshd            
+tcp        0      0 127.0.0.1:25                0.0.0.0:*                   LISTEN      968/master          
+tcp        0      0 :::8080                     :::*                        LISTEN      6645/httpd          
+tcp        0      0 :::22                       :::*                        LISTEN      889/sshd            
+[root@puppetm.justdevops.com:~]# netstat -ntlp |grep ruby
+tcp        0      0 0.0.0.0:8140                0.0.0.0:*                   LISTEN      6861/ruby           
+
+==================================================================================
+VERY IMPORTANT PART HOW PUPPET WORK AT SERVER SIDE AND CLIENT SIDE
+==================================================================================
+
+[root@puppetm.justdevops.com:~]# cd /etc/puppet/
+
+[root@puppetm.justdevops.com:/etc/puppet]# ls
+auth.conf  fileserver.conf  manifests  modules  puppet.conf
+
+[root@puppetm.justdevops.com:/etc/puppet]# cd /etc/puppet/manifests/
+[root@puppetm.justdevops.com:/etc/puppet/manifests]# ls
+[root@puppetm.justdevops.com:/etc/puppet/manifests]# 
+
+================================================================================
+
+1. WHAT IS RESOURCE IN PUPPET ?
+ANS:- RESOURCE IS NOTING IT IS SERVICE, FIEL, USER, PACKAGE, COMMAND WHICH WE WNAT TO START, CREATE OR INSTALL WITH THE HELP OF MASTER PUPPET TO SLAVE PUPPET.
+1. RESOURCES ARE CREATED & CONFIGURED UNDER CLASSES SECTION OF MANIFEST. CLASSES HELP YOU TO GRUOP YPUR RESOURCES. RESOURCES CAN`T BE USED AS IT IS.RESOURCES 
+   NEED TO BE DEFINE IN A CLASS THEN APPLY TO A SERVER.
+   
+
+================================================================================
+
+[root@puppetm.justdevops.com:/etc/puppet/manifests]# mkdir classes nodes
+[root@puppetm.justdevops.com:/etc/puppet/manifests]# ls
+classes  nodes
+[root@puppetm.justdevops.com:/etc/puppet/manifests]# cd classes/
+===============================================================================
+NOW I AM GOING TO CHECK STATUS MY NTP SERVICE ON SLAVE PUPPET. WEATHER NTP SERVICE IN INSTALLED, STOP, RUNNING, OR NOT INSTALLED
+================================================================================
+[root@puppetm.justdevops.com:/etc/puppet/manifests]# cat /etc/puppet/manifests/classes/ntp.pp 
+class ntp {
+
+	package { "ntp":
+		 ensure => installed
+	}
+
+	service { "ntpd":
+		ensure => running,
+	}
+}
+================================================================================
+SAMPLES OF RESOURCES
+================================================================================
+[root@puppetm.justdevops.com:/etc/puppet/manifests/classes]# cat software.pp 
+class software {
+
+	package { 'httpd':
+	provider => yum,
+	ensure => 'present'
+	#ensure   => latest,
+	}
+
+	service { 'httpd':
+	require => package['httpd'],
+	ensure => running,
+	enable => true
+	}
+
+	package {'ntp':
+	provider => yum,
+	ensure => installed
+	#ensure   => latest,
+	}
+	
+	service {'ntpd':
+	ensure => running,
+	}
+	
+	package {'rsyslog':
+	provider => yum,
+	#ensure => 'present'
+	ensure   => latest,
+	}
+	
+	service {'rsyslog':
+	require => package['rsyslog'],
+	ensure => running,
+	enable => true
+	}
+}
+===============================================================================
+HOW TO RUN INSTALLATION COMMAND FOR MASTER 
+===============================================================================
+puppet apply /etc/puppet/manifests/site.pp 
+
+===============================================================================
+HOW TO RUN PUPPET CONFIGURATION ON SLAVE
+===============================================================================
+puppet agent --test --server puppetm.justdevops.com
+
+===============================================================================
+HOW TO APPLY A SPECIFIC CLASS 
+===============================================================================
+puppet agent --test --server puppetm.justdevops.com --tags=ntp
+
+
+
+
+
+
+=================================================================================
+WHOLE INFORMATION RELATED TO PUPPET MANIFESTS, NODES, RESOURCES ARE IN SINGLE FILE THAT [site.pp] PP STANDS FOR PUPPET PACKAGE.
+PLEAE READ THIS. THIS FILE SAY THAT MY RESOURECSE DEFINITION ARE AVAILABLE IN "classes" AND NODE DEFINITION ARE AVAILABLE IN "nodes" AND "node default"
+SECTION TELLS THAT WHICH RESOURCES APPLY ON NODES "node 'puppets.justdevops.com' inherits default" DEFINE THAT ON THIS SERVER WE ARE GOING TO INHERIT 
+DEFUALT RESOURCES MENTION IN "node default" SECTION
+=================================================================================
+[root@puppetm.justdevops.com:/etc/puppet/manifests]# cat /etc/puppet/manifests/site.pp 
+
+import "classes/*"
+#import "nodes/*"
+
+##Base Nodes
+
+node default {
+	include ntp
+	include tfile
+	include copyf
+	include xec
+}
+
+node 'puppets.justdevops.com' inherits default {
+}
+
+===============================================================================
+2. WHAT IS MANIFEST ?
+ANS:- MANIFEST IS THE PATH WHERE YOU ARE GOING TO CONFIGURE YOUR RESOURCES & THESE RESOURCES APPLY TO THE NODE.
+      WE ALSO DEFINE OUR RESOURCES UNDER MODULE BUT MODULE IS USED FOR VERY COMPLEX RESOURCES LIKE CONFIGURE A MODULE FOR APACHE OR DATABASE.
+	  FOR SIMPLE RESOURCES WE ARE ALWAYS USE MANIFESTS
+
+====================================================================================================================================================
+STEP-3:- NOW WE ARE GOING TO DO SOME SETTING ON PUPPTE-SLAVE SIDE
+====================================================================================================================================================
+
+STEP-4:-change hostname of master server and put following  entery in /etc/host,  /etc/sysconfig/network & ~/.bashrc
+
+[root@puppets.justdevops.com:~]# hostname puppets.justdevops.com
+
+
+[root@puppets.justdevops.com:~]# vim /etc/hosts
+54.207.198.22   puppetm puppetm.justdevops.com
+54.207.231.183  puppets puppets.justdevops.com
+
+
+[root@puppets.justdevops.com:~]# vim /etc/sysconfig/network
+HOSTNAME=puppets.justdevops.com
+
+
+[root@puppets.justdevops.com:~]# vim ~/.bashrc
+PS1='\[\e[1;33m\][\u@$HOSTNAME:\w]\$\[\e[0m\] '
+echo "BE ALERT NOW YOU ARE WORKING ON ROOT SHELL"
+
+
+================================================================================
+STEP-5:- NOW INSTALL IMPORTANT REPOSITORY AT PUPPET-SLAVE SIDE
+================================================================================
+
+[root@puppetm.justdevops.com:~]# rpm -Uvh https://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+
+[root@puppets.justdevops.com:~]# yum install puppet
+
+================================================================================
+NOW WE ARE GOING TO CHNAGE IN SLAVE

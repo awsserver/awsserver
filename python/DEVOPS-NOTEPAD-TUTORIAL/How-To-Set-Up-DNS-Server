@@ -1,0 +1,63 @@
+in vim /etc/sysctl.conf  	 =  net.ipv6.conf.all.disable_ipv6 = 1
+in vim /etc/sysconfig/network  	=	NETWORKING_IPV6=no
+in vim /etc/sysconfig/network-scripts/ifcfg-eth0  = IPV6INIT=no
+
+disble iptable6 = chkconfig --level 345 ip6tables off
+====================
+Now Start
+BIND IS THE PACKAGE USED FOR DNS ACROSS LINUX/UNIX
+
+yum install bind bind-utils
+
+http://www.unixmen.com/dns-server-installation-step-by-step-using-centos-6-3/
+===============================================
+mv /etc/named.conf /etc/named.conf.bak
+mkdir  /var/named/oldconfig
+cd  /var/named
+mv * oldconfig/
+cp -a oldconfig/named.localhost justdevops.com.zone
+cp -a oldconfig/named.localhost 231.207.54.in-addr.arpa.zone
+==============================================
+vim /etc/named.conf
+
+-
+===========================================================
+cat /var/named/justdevops.com.zone 
+
+$TTL 604800
+justdevops.com.        IN SOA  dns.justdevops.com. root.dns.justdevops.com. (
+                                        0       ; serial
+                                        1D      ; refresh
+                                        1H      ; retry
+                                        1W      ; expire
+                                        3H )    ; minimum
+
+                                IN      NS      dns.justdevops.com.
+                                IN      MX      10      dns.justdevops.com
+
+dns.justdevops.com.             IN      A       54.207.231.183
+haproxy.justdevops.com.		IN	A	54.232.146.42
+web1.justdevops.com.		IN	A	54.207.198.22
+web2.justdevops.com.		IN	A	54.207.231.183
+
+www.justdevops.com.             IN      CNAME   haproxy.justdevops.com.
+
+=========================================================
+cat /var/named/231.207.54.in-addr.arpa.zone 
+$TTL 1D
+@       IN SOA  dns.justdevops.com. root.justdevops.com. (
+                                        0       ; serial
+                                        1D      ; refresh
+                                        1H      ; retry
+                                        1W      ; expire
+                                        3H )    ; minimum
+
+
+                                        NS      dns.justdevops.com.
+dns.justdevops.com.      	IN      A       54.207.231.183
+183                             IN      PTR     dns.justdevops.com.
+===========================================================
+
+
+:1,$ s/3ccloud/learndevops/
+
