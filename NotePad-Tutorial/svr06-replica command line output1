@@ -1,0 +1,1236 @@
+ailed to add the host to the list of known hosts (/home/kadmin/.ssh/known_hosts).
+Last login: Wed Feb  4 12:41:04 2015 from 182.74.233.46
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-ami/2013.03-release-notes/
+There are 60 security update(s) out of 289 total update(s) available
+Run "sudo yum update" to apply all updates.
+Amazon Linux version 2014.09 is available.
+[svr06-replica.3ccloud.com ~]$sudo s-
+sudo: s-: command not found
+[svr06-replica.3ccloud.com ~]$sudo -s
+[svr06-replica.3ccloud.com ec2-user]#cd
+[svr06-replica.3ccloud.com ~]#cd /opt/code/
+lib/             rel_4_6/         upgrade_new/     upgrade_new.tgz  
+[svr06-replica.3ccloud.com ~]#cd /opt/code/
+lib/             rel_4_6/         upgrade_new/     upgrade_new.tgz  
+[svr06-replica.3ccloud.com ~]#cd /opt/code/rel_4_6/
+cs30OCT2013/ ds30OCT2013/ ms30OCT2013/ 
+[svr06-replica.3ccloud.com ~]#cd /opt/code/rel_4_6/
+cs30OCT2013/ ds30OCT2013/ ms30OCT2013/ 
+[svr06-replica.3ccloud.com ~]#cd /opt/code/rel_4_6/ms30OCT2013/
+[svr06-replica.3ccloud.com ms30OCT2013]#s
+bash: s: command not found
+[svr06-replica.3ccloud.com ms30OCT2013]#ls
+build.properties  flexsrc    ha   leadfield-lang        liquibase.xml  rootChangeLog.xml  sql  test  webservice-configs
+build.xml         generated  kit  liquibase.properties  messages       servicenodeutil    src  war
+[svr06-replica.3ccloud.com ms30OCT2013]#vim  build.properties 
+[svr06-replica.3ccloud.com ms30OCT2013]#vim  build.xml 
+[svr06-replica.3ccloud.com ms30OCT2013]#tailf  /var/log/mysqld.log
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Fetch of persistent statistics requested for table "cc_1371"."media" but the required system tables mysql.innodb_table_stats and mysql.innodb_index_stats are not present or have unexpected structure. Using transient stats instead.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Fetch of persistent statistics requested for table "cc_1373"."ivr" but the required system tables mysql.innodb_table_stats and mysql.innodb_index_stats are not present or have unexpected structure. Using transient stats instead.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Fetch of persistent statistics requested for table "cc_1373"."projectdetails" but the required system tables mysql.innodb_table_stats and mysql.innodb_index_stats are not present or have unexpected structure. Using transient stats instead.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Fetch of persistent statistics requested for table "cc_1373"."webastraconfig" but the required system tables mysql.innodb_table_stats and mysql.innodb_index_stats are not present or have unexpected structure. Using transient stats instead.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Fetch of persistent statistics requested for table "cc_1373"."media" but the required system tables mysql.innodb_table_stats and mysql.innodb_index_stats are not present or have unexpected structure. Using transient stats instead.
+^C
+[svr06-replica.3ccloud.com ms30OCT2013]#mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 5.6.23 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2015, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> CREATE TABLE mysql.`innodb_index_stats` (
+    -> 
+    ->   `database_name` varchar(64) COLLATE utf8_bin NOT NULL,
+    -> 
+    ->   `table_name` varchar(64) COLLATE utf8_bin NOT NULL,
+    -> 
+    ->   `index_name` varchar(64) COLLATE utf8_bin NOT NULL,
+    -> 
+    ->   `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    -> 
+    ->   `stat_name` varchar(64) COLLATE utf8_bin NOT NULL,
+    -> 
+    ->   `stat_value` bigint(20) unsigned NOT NULL,
+    -> 
+    ->   `sample_size` bigint(20) unsigned DEFAULT NULL,
+    -> 
+    ->   `stat_description` varchar(1024) COLLATE utf8_bin NOT NULL,
+    -> 
+    ->   PRIMARY KEY (`database_name`,`table_name`,`index_name`,`stat_name`)
+    -> 
+    -> ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin STATS_PERSISTENT=0;
+e Revocation List (CRL) files',
+
+  `Enabled_auto_position` tinyint(1) NOT NULL COMMENT 'Indicates whether GTIDs will be used to retrieve events from the master.',
+
+  PRIMARY KEY (`Host`,`Port`)
+
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 STATS_PERSISTENT=0 COMMENT='Master Information';
+
+
+
+
+
+CREATE TABLE mysql.`slave_relay_log_info` (
+
+  `Number_of_lines` int(10) unsigned NOT NULL COMMENT 'Number of lines in the file or rows in the table. Used to version table definitions.',
+
+  `Relay_log_name` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT 'The name of the current relay log file.',
+
+  `Relay_log_pos` bigint(20) unsigned NOT NULL COMMENT 'The relay log position of the last executed event.',
+
+  `Master_log_name` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT 'The name of the master binary log file from which the events in the relay log file were read.',
+
+  `Master_log_pos` bigint(20) unsigned NOT NULL COMMENT 'The master log position of the last executed event.',
+
+  `Sql_delay` int(11) NOT NULL COMMENT 'The number of seconds that the slave muQuery OK, 0 rows affected (0.16 sec)
+
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> CREATE TABLE mysql.`innodb_table_stats` (
+
+    -> 
+
+    ->   `database_name` varchar(64) COLLATE utf8_bin NOT NULL,
+
+    -> 
+
+    ->   `table_name` varchar(64) COLLATE utf8_bin NOT NULL,
+
+    -> 
+
+    ->   `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    -> 
+
+    ->   `n_rows` bigint(20) unsigned NOT NULL,
+
+    -> 
+
+    ->   `clustered_index_size` bigint(20) unsigned NOT NULL,
+
+    -> 
+
+    ->   `sum_of_other_index_sizes` bigint(20) unsigned NOT NULL,
+
+    -> 
+
+    ->   PRIMARY KEY (`database_name`,`table_name`)
+
+    -> 
+
+    -> ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin STATS_PERSISTENT=0;
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> 
+
+mysql> 
+
+mysql> 
+
+mysql> 
+
+mysql> 
+
+mysql> CREATE TABLE mysql.`slave_master_info` (
+
+    -> 
+
+    ->   `Number_of_lines` int(10) unsigned NOT NULL COMMENT 'Number of lines in the file.',
+    -> 
+    ->   `Master_log_name` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT 'The name of the master binary log currently being read from the master.',
+    -> 
+    ->   `Master_log_pos` bigint(20) unsigned NOT NULL COMMENT 'The master log position of the last read event.',
+    -> 
+    ->   `Host` char(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT 'The host name of the master.',
+    -> 
+    ->   `User_name` text CHARACTER SET utf8 COLLATE utf8_bin COMMENT 'The user name used to connect to the master.',
+    -> 
+    ->   `User_password` text CHARACTER SET utf8 COLLATE utf8_bin COMMENT 'The password used to connect to the master.',
+    -> 
+    ->   `Port` int(10) unsigned NOT NULL COMMENT 'The network port used to connect to the master.',
+    -> 
+    ->   `Connect_retry` int(10) unsigned NOT NULL COMMENT 'The period (in seconds) that the slave will wait before trying to reconnect to the master.',
+    -> 
+    ->   `Enabled_ssl` tinyint(1) NOT NULL COMMENT 'Indicates whether the server supports SSL connections.',
+    -> 
+    ->   `Ssl_ca` text CHARACTER SET utf8 COLLATE utf8_bin COMMENT 'The file used for the Certificate Authority (CA) certificate.',
+    -> 
+    ->   `Ssl_capath` text CHARACTER SET utf8 COLLATE utf8_bin COMMENT 'The path to the Certificate Authority (CA) certificates.',
+    -> 
+    ->   `Ssl_cert` text CHARACTER SET utf8 COLLATE utf8_bin COMMENT 'The name of the SSL certificate file.',
+    -> 
+    ->   `Ssl_cipher` text CHARACTER SET utf8 COLLATE utf8_bin COMMENT 'The name of the cipher in use for the SSL connection.',
+    -> 
+    ->   `Ssl_key` text CHARACTER SET utf8 COLLATE utf8_bin COMMENT 'The name of the SSL key file.',
+    -> 
+    ->   `Ssl_verify_server_cert` tinyint(1) NOT NULL COMMENT 'Whether to verify the server certificate.',
+    -> 
+    ->   `Heartbeat` float NOT NULL,
+    -> 
+    ->   `Bind` text CHARACTER SET utf8 COLLATE utf8_bin COMMENT 'Displays which interface is employed when connecting to the MySQL server',
+    -> 
+    ->   `Ignored_server_ids` text CHARACTER SET utf8 COLLATE utf8_bin COMMENT 'The number of server IDs to be ignored, followed by the actual server IDs',
+    -> 
+    ->   `Uuid` text CHARACTER SET utf8 COLLATE utf8_bin COMMENT 'The master server uuid.',
+    -> 
+    ->   `Retry_count` bigint(20) unsigned NOT NULL COMMENT 'Number of reconnect attempts, to the master, before giving up.',
+    -> 
+    ->   `Ssl_crl` text CHARACTER SET utf8 COLLATE utf8_bin COMMENT 'The file used for the Certificate Revocation List (CRL)',
+    -> 
+    ->   `Ssl_crlpath` text CHARACTER SET utf8 COLLATE utf8_bin COMMENT 'The path used for Certificate Revocation List (CRL) files',
+    -> 
+    ->   `Enabled_auto_position` tinyint(1) NOT NULL COMMENT 'Indicates whether GTIDs will be used to retrieve events from the master.',
+    -> 
+    ->   PRIMARY KEY (`Host`,`Port`)
+    -> 
+    -> ) ENGINE=InnoDB DEFAULT CHARSET=utf8 STATS_PERSISTENT=0 COMMENT='Master Information';
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> CREATE TABLE mysql.`slave_relay_log_info` (
+    -> 
+    ->   `Number_of_lines` int(10) unsigned NOT NULL COMMENT 'Number of lines in the file or rows in the table. Used to version table definitions.',
+    -> 
+    ->   `Relay_log_name` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT 'The name of the current relay log file.',
+    -> 
+    ->   `Relay_log_pos` bigint(20) unsigned NOT NULL COMMENT 'The relay log position of the last executed event.',
+    -> 
+    ->   `Master_log_name` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT 'The name of the master binary log file from which the events in the relay log file were read.',
+    -> 
+    ->   `Master_log_pos` bigint(20) unsigned NOT NULL COMMENT 'The master log position of the last executed event.',
+    -> 
+    ->   `Sql_delay` int(11) NOT NULL COMMENT 'The number of seconds that the slave must lag behind the master.',
+    -> 
+    ->   `Number_of_worke
+    `> 
+    `>   `Id` int(10) unsigned NOT NULL COMMENT 'Internal Id th
+    `> 
+    `>   PRIMARY KEY (`Id`)
+    `> 
+    `> ) ENGINE=InnoDB DEFAULT CHARSET
+    `> 
+    `> 
+    `> 
+    `> 
+    `> 
+    `> CREATE TABLE mysql.`slave_worker_info` (
+    `> 
+    `>   `Id` int(10) unsigned NOT NULL,
+    `> 
+    `>   `Relay
+    -> 
+    ->   `Relay_log_pos` bigint(20) unsigned NO
+    -> 
+    ->   `Master_log_name` text CHARACTER SET utf8 COLLATE ut
+    -> 
+    ->   `Master_log_pos` bigint(20) unsigned NOT NULL,
+    -> 
+    ->   `Check
+    `> 
+    `>   `Checkpoint_relay_log_pos` bigint(20) unsi
+    `> 
+    `>   `Checkpoint_master_log_name` text CHARACTER SET utf8 COLLATE utf8_bin N
+    `> 
+    `> 
+    `> 
+    `> 
+    `> 
+    `>   `Checkpoint_group_size` int(10) unsign
+    `> 
+    `>   `Checkpoint_group_bitmap` blob NOT NULL,
+    `> 
+    `>   PRIMARY KEY (`Id`)
+    `> 
+    `> ) ENGINE=InnoDB DEF
+    `> Ctrl-C -- exit!
+Aborted
+[svr06-replica.3ccloud.com ms30OCT2013]#mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 5.6.23 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2015, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> CREATE TABLE mysql.`slave_worker_info` (
+    -> 
+    ->   `Id` int(10) unsigned NOT NULL,
+    -> 
+    ->   `Relay_log_name` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+    -> 
+    ->   `Relay_log_pos` bigint(20) unsigned NOT NULL,
+    -> 
+    ->   `Master_log_name` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+    -> 
+    ->   `Master_log_pos` bigint(20) unsigned NOT NULL,
+    -> 
+    ->   `Checkpoint_relay_log_name` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+    -> 
+    ->   `Checkpoint_relay_log_pos` bigint(20) unsigned NOT NULL,
+    -> 
+    ->   `Checkpoint_master_log_name` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+    -> 
+    ->   `Checkpoint_master_log_pos` bigint(20) unsigned NOT NULL,
+    -> 
+    ->   `Checkpoint_seqno` int(10) unsigned NOT NULL,
+    -> 
+    ->   `Checkpoint_group_size` int(10) unsigned NOT NULL,
+    -> 
+    ->   `Checkpoint_group_bitmap` blob NOT NULL,
+    -> 
+    ->   PRIMARY KEY (`Id`)
+    -> 
+    -> ) ENGINE=InnoDB DEFAULT CHARSET=utf8 STATS_PERSISTENT=0 COMMENT='Worker Information';
+Query OK, 0 rows affected (0.16 sec)
+
+mysql> exit
+Bye
+[svr06-replica.3ccloud.com ms30OCT2013]#tailf  /var/log/mysqld.log
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Fetch of persistent statistics requested for table "cc_1371"."media" but the required system tables mysql.innodb_table_stats and mysql.innodb_index_stats are not present or have unexpected structure. Using transient stats instead.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Fetch of persistent statistics requested for table "cc_1373"."ivr" but the required system tables mysql.innodb_table_stats and mysql.innodb_index_stats are not present or have unexpected structure. Using transient stats instead.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Fetch of persistent statistics requested for table "cc_1373"."projectdetails" but the required system tables mysql.innodb_table_stats and mysql.innodb_index_stats are not present or have unexpected structure. Using transient stats instead.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Fetch of persistent statistics requested for table "cc_1373"."webastraconfig" but the required system tables mysql.innodb_table_stats and mysql.innodb_index_stats are not present or have unexpected structure. Using transient stats instead.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Fetch of persistent statistics requested for table "cc_1373"."media" but the required system tables mysql.innodb_table_stats and mysql.innodb_index_stats are not present or have unexpected structure. Using transient stats instead.
+^C
+[svr06-replica.3ccloud.com ms30OCT2013]#clear
+
+[svr06-replica.3ccloud.com ms30OCT2013]#
+[svr06-replica.3ccloud.com ms30OCT2013]#
+[svr06-replica.3ccloud.com ms30OCT2013]#
+[svr06-replica.3ccloud.com ms30OCT2013]#tailf /var/log/mysqld.log
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Fetch of persistent statistics requested for table "cc_1371"."media" but the required system tables mysql.innodb_table_stats and mysql.innodb_index_stats are not present or have unexpected structure. Using transient stats instead.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Fetch of persistent statistics requested for table "cc_1373"."ivr" but the required system tables mysql.innodb_table_stats and mysql.innodb_index_stats are not present or have unexpected structure. Using transient stats instead.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Fetch of persistent statistics requested for table "cc_1373"."projectdetails" but the required system tables mysql.innodb_table_stats and mysql.innodb_index_stats are not present or have unexpected structure. Using transient stats instead.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Fetch of persistent statistics requested for table "cc_1373"."webastraconfig" but the required system tables mysql.innodb_table_stats and mysql.innodb_index_stats are not present or have unexpected structure. Using transient stats instead.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Fetch of persistent statistics requested for table "cc_1373"."media" but the required system tables mysql.innodb_table_stats and mysql.innodb_index_stats are not present or have unexpected structure. Using transient stats instead.
+^C^C
+[svr06-replica.3ccloud.com ms30OCT2013]#tailf /var/log/mysqld.log
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Fetch of persistent statistics requested for table "cc_1371"."media" but the required system tables mysql.innodb_table_stats and mysql.innodb_index_stats are not present or have unexpected structure. Using transient stats instead.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Fetch of persistent statistics requested for table "cc_1373"."ivr" but the required system tables mysql.innodb_table_stats and mysql.innodb_index_stats are not present or have unexpected structure. Using transient stats instead.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Fetch of persistent statistics requested for table "cc_1373"."projectdetails" but the required system tables mysql.innodb_table_stats and mysql.innodb_index_stats are not present or have unexpected structure. Using transient stats instead.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Fetch of persistent statistics requested for table "cc_1373"."webastraconfig" but the required system tables mysql.innodb_table_stats and mysql.innodb_index_stats are not present or have unexpected structure. Using transient stats instead.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Fetch of persistent statistics requested for table "cc_1373"."media" but the required system tables mysql.innodb_table_stats and mysql.innodb_index_stats are not present or have unexpected structure. Using transient stats instead.
+^C
+[svr06-replica.3ccloud.com ms30OCT2013]#/etc/init.d/mysqld reload
+[svr06-replica.3ccloud.com ms30OCT2013]#tailf /var/log/mysqld.log
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Fetch of persistent statistics requested for table "cc_1371"."media" but the required system tables mysql.innodb_table_stats and mysql.innodb_index_stats are not present or have unexpected structure. Using transient stats instead.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Fetch of persistent statistics requested for table "cc_1373"."ivr" but the required system tables mysql.innodb_table_stats and mysql.innodb_index_stats are not present or have unexpected structure. Using transient stats instead.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Fetch of persistent statistics requested for table "cc_1373"."projectdetails" but the required system tables mysql.innodb_table_stats and mysql.innodb_index_stats are not present or have unexpected structure. Using transient stats instead.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Fetch of persistent statistics requested for table "cc_1373"."webastraconfig" but the required system tables mysql.innodb_table_stats and mysql.innodb_index_stats are not present or have unexpected structure. Using transient stats instead.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Fetch of persistent statistics requested for table "cc_1373"."media" but the required system tables mysql.innodb_table_stats and mysql.innodb_index_stats are not present or have unexpected structure. Using transient stats instead.
+
+^C
+[svr06-replica.3ccloud.com ms30OCT2013]#tailf /var/log/mysqld.log
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Fetch of persistent statistics requested for table "cc_1371"."media" but the required system tables mysql.innodb_table_stats and mysql.innodb_index_stats are not present or have unexpected structure. Using transient stats instead.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Fetch of persistent statistics requested for table "cc_1373"."ivr" but the required system tables mysql.innodb_table_stats and mysql.innodb_index_stats are not present or have unexpected structure. Using transient stats instead.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Fetch of persistent statistics requested for table "cc_1373"."projectdetails" but the required system tables mysql.innodb_table_stats and mysql.innodb_index_stats are not present or have unexpected structure. Using transient stats instead.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Fetch of persistent statistics requested for table "cc_1373"."webastraconfig" but the required system tables mysql.innodb_table_stats and mysql.innodb_index_stats are not present or have unexpected structure. Using transient stats instead.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Table "mysql"."innodb_table_stats" not found.
+2015-02-04 13:27:59 7ff144c3f700 InnoDB: Error: Fetch of persistent statistics requested for table "cc_1373"."media" but the required system tables mysql.innodb_table_stats and mysql.innodb_index_stats are not present or have unexpected structure. Using transient stats instead.
+^C
+[svr06-replica.3ccloud.com ms30OCT2013]#/etc/init.d/mysqld restart
+Stopping mysqld:                                           [  OK  ]
+Starting mysqld:                                           [  OK  ]
+[svr06-replica.3ccloud.com ms30OCT2013]#/etc/init.d/mysqld stop
+Stopping mysqld:                                           [  OK  ]
+[svr06-replica.3ccloud.com ms30OCT2013]#
+[svr06-replica.3ccloud.com ms30OCT2013]#
+[svr06-replica.3ccloud.com ms30OCT2013]#
+[svr06-replica.3ccloud.com ms30OCT2013]#cd
+[svr06-replica.3ccloud.com ~]#cd /mnt/
+[svr06-replica.3ccloud.com mnt]#mkdir apps
+[svr06-replica.3ccloud.com mnt]#mount /mnt/apps/ /dev/xvdh
+mount: you must specify the filesystem type
+[svr06-replica.3ccloud.com mnt]#fdisk -l | grep -B1 xvd
+
+Disk /dev/xvda1: 8589 MB, 8589934592 bytes
+--
+
+Disk /dev/xvdg: 536.9 GB, 536870912000 bytes
+--
+
+Disk /dev/xvdf: 214.7 GB, 214748364800 bytes
+--
+
+Disk /dev/xvdh: 536.9 GB, 536870912000 bytes
+[svr06-replica.3ccloud.com mnt]#mount | grep xvd
+/dev/xvda1 on / type ext4 (rw,noatime)
+/dev/xvdg on /mnt/data type ext4 (rw)
+[svr06-replica.3ccloud.com mnt]#mount -oro /dev/xvd
+xvda1  xvdf   xvdg   xvdh   
+[svr06-replica.3ccloud.com mnt]#mount /dev/xvdh /mnt/apps
+[svr06-replica.3ccloud.com mnt]#df -hT
+Filesystem    Type    Size  Used Avail Use% Mounted on
+/dev/xvda1    ext4    7.9G  4.7G  3.2G  60% /
+tmpfs        tmpfs    7.4G     0  7.4G   0% /dev/shm
+/dev/xvdg     ext4    493G  180G  291G  39% /mnt/data
+/dev/xvdh     ext4    493G  180G  291G  39% /mnt/apps
+[svr06-replica.3ccloud.com mnt]#cd /var/lib/mysql
+[svr06-replica.3ccloud.com mysql]#ls
+auto.cnf  cc_1299  cc_1313  cc_1331  cc_1339  cc_1348  cc_1365  cc_1375  cc_1387  cc_1459      ib_logfile1                test
+cc_1271   cc_1301  cc_1314  cc_1334  cc_1340  cc_1349  cc_1367  cc_1376  cc_1402  cc_1480      ip-10-61-158-142-slow.log  upgrade_client
+cc_1274   cc_1302  cc_1315  cc_1335  cc_1342  cc_1351  cc_1371  cc_1379  cc_1406  db_metadata  metadata
+cc_1283   cc_1306  cc_1319  cc_1336  cc_1344  cc_1360  cc_1373  cc_1380  cc_1411  ibdata1      mysql
+cc_1295   cc_1308  cc_1329  cc_1337  cc_1345  cc_1363  cc_1374  cc_1385  cc_1440  ib_logfile0  performance_schema
+[svr06-replica.3ccloud.com mysql]#cd ..
+[svr06-replica.3ccloud.com lib]#ll
+total 88
+drwxr-xr-x 2 root   root   4096 Feb  4 11:44 alternatives
+drwx------ 3 root   root   4096 May  9  2013 authconfig
+drwxr-xr-x 4 root   root   4096 Jul 29  2013 cloud
+drwx------ 2 apache apache 4096 Sep 15 19:42 dav
+drwxr-xr-x 2 root   root   4096 Jul 29  2013 dbus
+drwxr-xr-x 2 root   root   4096 Jul 29  2013 dhclient
+drwxr-xr-x 2 root   root   4096 Jan  6  2012 games
+-rw-r--r-- 1 root   root    609 Feb  4 03:50 logrotate.status
+drwxr-xr-x 2 root   root   4096 Jan  6  2012 misc
+lrwxrwxrwx 1 mysql  mysql    15 Aug 30  2013 mysql -> /mnt/data/mysql
+drwxr-xr-x 2 mysql  mysql  4096 Jan 19 14:08 mysql.5.6
+drwxr-xr-x 3 root   root   4096 Feb  4 10:58 net-snmp
+drwxr-xr-x 2 ntp    ntp    4096 Feb  4 13:58 ntp
+drwxr-xr-x 3 root   root   4096 Mar 28  2014 php
+-rw------- 1 root   root    512 Feb  4 10:57 random-seed
+drwxr-xr-x 2 root   root   4096 Dec  5 18:21 rpm
+drwx------ 2 root   root   4096 Mar 14  2013 rsyslog
+drwxr-xr-x 4 root   root   4096 May  9  2013 stateless
+drwxrwxr-x 3 root   root   4096 Jul 29  2013 tomcat6_bk
+drwxr-xr-x 3 root   tomcat 4096 Feb  4 11:44 tomcat7
+drwxr-xr-x 2 root   root   4096 Dec  2 18:54 tomcats
+drwxr-xr-x 2 root   root   4096 Feb  4 12:52 update-motd
+drwxr-xr-x 6 root   root   4096 Feb  4 12:52 yum
+[svr06-replica.3ccloud.com lib]#sudo rm mysql
+mysql/     mysql.5.6/ 
+[svr06-replica.3ccloud.com lib]#sudo rm mysql
+[svr06-replica.3ccloud.com lib]#ls
+alternatives  cloud  dbus      games             misc       net-snmp  php          rpm      stateless   tomcat7  update-motd
+authconfig    dav    dhclient  logrotate.status  mysql.5.6  ntp       random-seed  rsyslog  tomcat6_bk  tomcats  yum
+[svr06-replica.3ccloud.com lib]#ln -s /mnt/apps/mysql .
+[svr06-replica.3ccloud.com lib]#lll
+bash: lll: command not found
+4[svr06-replica.3ccloud.com lib]#4ll
+bash: 4ll: command not found
+[svr06-replica.3ccloud.com lib]#lll
+bash: lll: command not found
+[svr06-replica.3ccloud.com lib]#ll
+total 88
+drwxr-xr-x 2 root   root   4096 Feb  4 11:44 alternatives
+drwx------ 3 root   root   4096 May  9  2013 authconfig
+drwxr-xr-x 4 root   root   4096 Jul 29  2013 cloud
+drwx------ 2 apache apache 4096 Sep 15 19:42 dav
+drwxr-xr-x 2 root   root   4096 Jul 29  2013 dbus
+drwxr-xr-x 2 root   root   4096 Jul 29  2013 dhclient
+drwxr-xr-x 2 root   root   4096 Jan  6  2012 games
+-rw-r--r-- 1 root   root    609 Feb  4 03:50 logrotate.status
+drwxr-xr-x 2 root   root   4096 Jan  6  2012 misc
+lrwxrwxrwx 1 root   root     15 Feb  4 14:04 mysql -> /mnt/apps/mysql
+drwxr-xr-x 2 mysql  mysql  4096 Jan 19 14:08 mysql.5.6
+drwxr-xr-x 3 root   root   4096 Feb  4 10:58 net-snmp
+drwxr-xr-x 2 ntp    ntp    4096 Feb  4 13:58 ntp
+drwxr-xr-x 3 root   root   4096 Mar 28  2014 php
+-rw------- 1 root   root    512 Feb  4 10:57 random-seed
+drwxr-xr-x 2 root   root   4096 Dec  5 18:21 rpm
+drwx------ 2 root   root   4096 Mar 14  2013 rsyslog
+drwxr-xr-x 4 root   root   4096 May  9  2013 stateless
+drwxrwxr-x 3 root   root   4096 Jul 29  2013 tomcat6_bk
+drwxr-xr-x 3 root   tomcat 4096 Feb  4 11:44 tomcat7
+drwxr-xr-x 2 root   root   4096 Dec  2 18:54 tomcats
+drwxr-xr-x 2 root   root   4096 Feb  4 12:52 update-motd
+drwxr-xr-x 6 root   root   4096 Feb  4 12:52 yum
+[svr06-replica.3ccloud.com lib]#/etc/init.d/mysqld start
+
+Starting mysqld:                                           [  OK  ]
+[svr06-replica.3ccloud.com lib]#
+[svr06-replica.3ccloud.com lib]#mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 2
+Server version: 5.6.23 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2015, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> 
+mysql> 
+mysql> CREATE TABLE mysql.`innodb_index_stats` (
+    -> 
+    ->   `database_name` varchar(64) COLLATE utf8_bin NOT NULL,
+    -> 
+    ->   `table_name` varchar(64) COLLATE utf8_bin NOT NULL,
+    -> 
+    ->   `index_name` varchar(64) COLLATE utf8_bin NOT NULL,
+    -> 
+    ->   `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    -> 
+    ->   `stat_name` varchar(64) COLLATE utf8_bin NOT NULL,
+    -> 
+    ->   `stat_value` bigint(20) unsigned NOT NULL,
+    -> 
+    ->   `sample_size` bigint(20) unsigned DEFAULT NULL,
+    -> 
+    ->   `stat_description` varchar(1024) COLLATE utf8_bin NOT NULL,
+    -> 
+    ->   PRIMARY KEY (`database_name`,`table_name`,`index_name`,`stat_name`)
+    -> 
+    -> ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin STATS_PERSISTENT=0;
+Query OK, 0 rows affected (0.16 sec)
+
+mysql> 
+mysql> CREATE TABLE mysql.`innodb_table_stats` (
+    -> 
+    ->   `database_name` varchar(64) COLLATE utf8_bin NOT NULL,
+    -> 
+    ->   `table_name` varchar(64) COLLATE utf8_bin NOT NULL,
+    -> 
+    ->   `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    -> 
+    ->   `n_rows` bigint(20) unsigned NOT NULL,
+    -> 
+    ->   `clustered_index_size` bigint(20) unsigned NOT NULL,
+    -> 
+    ->   `sum_of_other_index_sizes` bigint(20) unsigned NOT NULL,
+    -> 
+    ->   PRIMARY KEY (`database_name`,`table_name`)
+    -> 
+    -> ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin STATS_PERSISTENT=0;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> 
+mysql> CREATE TABLE mysql.`slave_master_info` (
+    -> 
+    ->   `Number_of_lines` int(10) unsigned NOT NULL COMMENT 'Number of lines in the file.',
+    -> 
+    ->   `Master_log_name` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT 'The name of the master binary log currently being read from the master.',
+    -> 
+    ->   `Master_log_pos` bigint(20) unsigned NOT NULL COMMENT 'The master log position of the last read event.',
+    -> 
+    ->   `Host` char(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT 'The host name of the master.',
+    -> 
+    ->   `User_name` text CHARACTER SET utf8 COLLATE utf8_bin COMMENT 'The user name used to connect to the master.',
+    -> 
+    ->   `User_password` text CHARACTER SET utf8 COLLATE utf8_bin COMMENT 'The password used to connect to the master.',
+    -> 
+    ->   `Port` int(10) unsigned NOT NULL COMMENT 'The network port used to connect to the master.',
+    -> 
+    ->   `Connect_retry` int(10) unsigned NOT NULL COMMENT 'The period (in seconds) that the slave will wait before trying to reconnect to the master.',
+    -> 
+    ->   `Enabled_ssl` tinyint(1) NOT NULL COMMENT 'Indicates whether the server supports SSL connections.',
+    -> 
+    ->   `Ssl_ca` text CHARACTER SET utf8 COLLATE utf8_bin COMMENT 'The file used for the Certificate Authority (CA) certificate.',
+    -> 
+    ->   `Ssl_capath` text CHARACTER SET utf8 COLLATE utf8_bin COMMENT 'The path to the Certificate Authority (CA) certificates.',
+    -> 
+    ->   `Ssl_cert` text CHARACTER SET utf8 COLLATE utf8_bin COMMENT 'The name of the SSL certificate file.',
+    -> 
+    ->   `Ssl_cipher` text CHARACTER SET utf8 COLLATE utf8_bin COMMENT 'The name of the cipher in use for the SSL connection.',
+    -> 
+    ->   `Ssl_key` text CHARACTER SET utf8 COLLATE utf8_bin COMMENT 'The name of the SSL key file.',
+    -> 
+    ->   `Ssl_verify_server_cert` tinyint(1) NOT NULL COMMENT 'Whether to verify the server certificate.',
+    -> 
+    ->   `Heartbeat` float NOT NULL,
+    -> 
+    ->   `Bind` text CHARACTER SET utf8 COLLATE utf8_bin COMMENT 'Displays which interface is employed when connecting to the MySQL server',
+    -> 
+    ->   `Ignored_server_ids` text CHARACTER SET utf8 COLLATE utf8_bin COMMENT 'The number of server IDs to be ignored, followed by the actual server IDs',
+    -> 
+    ->   `Uuid` text CHARACTER SET utf8 COLLATE utf8_bin COMMENT 'The master server uuid.',
+    -> 
+    ->   `Retry_count` bigint(20) unsigned NOT NULL COMMENT 'Number of reconnect attempts, to the master, before giving up.',
+    -> 
+    ->   `Ssl_crl` text CHARACTER SET utf8 COLLATE utf8_bin COMMENT 'The file used for the Certificate Revocation List (CRL)',
+    -> 
+    ->   `Ssl_crlpath` text CHARACTER SET utf8 COLLATE utf8_bin COMMENT 'The path used for Certificate Revocation List (CRL) files',
+    -> 
+    ->   `Enabled_auto_position` tinyint(1) NOT NULL COMMENT 'Indicates whether GTIDs will be used to retrieve events from the master.',
+    -> 
+    ->   PRIMARY KEY (`Host`,`Port`)
+    -> 
+    -> ) ENGINE=InnoDB DEFAULT CHARSET=utf8 STATS_PERSISTENT=0 COMMENT='Master Information';
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> 
+mysql> CREATE TABLE mysql.`slave_relay_log_info` (
+    -> 
+    ->   `Number_of_lines` int(10) unsigned NOT NULL COMMENT 'Number of lines in the file or rows in the table. Used to version table definitions.',
+    -> 
+    ->   `Relay_log_name` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT 'The name of the current relay log file.',
+    -> 
+    ->   `Relay_log_pos` bigint(20) unsigned NOT NULL COMMENT 'The relay log position of the last executed event.',
+    -> 
+    ->   `Master_log_name` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT 'The name of the master binary log file from which the events in the relay log file were read.',
+    -> 
+    ->   `Master_log_pos` bigint(20) unsigned NOT NULL COMMENT 'The master log position of the last executed event.',
+    -> 
+    ->   `Sql_delay` int(11) NOT NULL COMMENT 'The number of seconds that the slave must lag behind the master.',
+    -> 
+    ->   `Number_of_workers` int(10) unsigned NOT NULL,
+    -> 
+    ->   `Id` int(10) unsigned NOT NULL COMMENT 'Internal Id that uniquely identifies this record.',
+    -> 
+    ->   PRIMARY KEY (`Id`)
+    -> 
+    -> ) ENGINE=InnoDB DEFAULT CHARSET=utf8 STATS_PERSISTENT=0 COMMENT='Relay Log Information';
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> 
+mysql> CREATE TABLE mysql.`slave_worker_info` (
+    -> 
+    ->   `Id` int(10) unsigned NOT NULL,
+    -> 
+    ->   `Relay_log_name` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+    -> 
+    ->   `Relay_log_pos` bigint(20) unsigned NOT NULL,
+    -> 
+    ->   `Master_log_name` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+    -> 
+    ->   `Master_log_pos` bigint(20) unsigned NOT NULL,
+    -> 
+    ->   `Checkpoint_relay_log_name` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+    -> 
+    ->   `Checkpoint_relay_log_pos` bigint(20) unsigned NOT NULL,
+    -> 
+    ->   `Checkpoint_master_log_name` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+    -> 
+    ->   `Checkpoint_master_log_pos` bigint(20) unsigned NOT NULL,
+    -> 
+    ->   `Checkpoint_seqno` int(10) unsigned NOT NULL,
+    -> 
+    ->   `Checkpoint_group_size` int(10) unsigned NOT NULL,
+    -> 
+    ->   `Checkpoint_group_bitmap` blob NOT NULL,
+    -> 
+    ->   PRIMARY KEY (`Id`)
+    -> 
+    -> ) ENGINE=InnoDB DEFAULT CHARSET=utf8 STATS_PERSISTENT=0 COMMENT='Worker Information';
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> use metadata;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+
+
+Database changed
+mysql> 
+mysql> 
+mysql> show tables;
++------------------------+
+| Tables_in_metadata     |
++------------------------+
+| access                 |
+| accountdefaults        |
+| activitytype           |
+| apiversion             |
+| assignments            |
+| callable_tasks         |
+| callcenters            |
+| configs                |
+| configvalidation       |
+| deploymentproperties   |
+| downloads              |
+| email                  |
+| encryption             |
+| exports                |
+| filterentity           |
+| filtergenerator        |
+| groups                 |
+| importleadstatus       |
+| incomingnumbers        |
+| jobdashboard           |
+| jobs                   |
+| jobstatus              |
+| members                |
+| metadatasync           |
+| nanp                   |
+| payment                |
+| paymentdetails         |
+| paymentserviceparams   |
+| paymentservices        |
+| reports                |
+| rspermission           |
+| session                |
+| synchservers           |
+| systementities         |
+| systementityattributes |
+| tasks                  |
+| tasktypeconfig         |
+| tasktypes              |
+| webservice_errors      |
++------------------------+
+39 rows in set (0.00 sec)
+
+mysql> UPDATE accountdefaults SET sipaddress='test.ser.3ccloud.com';
+Query OK, 44 rows affected (0.00 sec)
+Rows matched: 44  Changed: 44  Warnings: 0
+
+mysql> UPDATE accountdefaults SET obpsipaddress='test.ser.3ccloud.com';
+Query OK, 44 rows affected (0.01 sec)
+Rows matched: 44  Changed: 44  Warnings: 0
+
+mysql> UPDATE accountdefaults SET chatsipaddress='ser4replica.3ccloud.com';
+Query OK, 44 rows affected (0.01 sec)
+Rows matched: 44  Changed: 44  Warnings: 0
+
+mysql> UPDATE accountdefaults SET domainaddress='svr06-replica.3ccloud.com';
+Query OK, 44 rows affected (0.00 sec)
+Rows matched: 44  Changed: 44  Warnings: 0
+
+mysql> UPDATE accountdefaults SET reportingaddress='rep06-replica.3ccloud.com';
+Query OK, 44 rows affected (0.01 sec)
+Rows matched: 44  Changed: 44  Warnings: 0
+
+mysql> UPDATE accountdefaults SET recordingaddress='recordings-test.3clogic.com';
+Query OK, 44 rows affected (0.01 sec)
+Rows matched: 44  Changed: 44  Warnings: 0
+
+mysql> UPDATE accountdefaults SET dashboardaddress='ds06-replica.3ccloud.com';
+Query OK, 44 rows affected (0.00 sec)
+Rows matched: 44  Changed: 44  Warnings: 0
+
+mysql> UPDATE deploymentproperties SET value='ds06-replica.3ccloud.com' WHERE depkey='installation.dashboard.domain';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE deploymentproperties SET value='mycall-replica.3ccloud.com' WHERE depkey='installation.domain';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE deploymentproperties SET value='recordings-test.3clogic.com' WHERE depkey='installation.recording.domain';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE deploymentproperties SET value='rep06-replica.3ccloud.com' WHERE depkey='installation.reporting.domain';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE deploymentproperties SET value='svr06-replica.3ccloud.com' WHERE depkey='installation.self.domain';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE deploymentproperties SET value='test.ser.3ccloud.com' WHERE depkey='installation.sip.domain';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE deploymentproperties SET value='test.ser.3ccloud.com' WHERE depkey='sipaddress';
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> UPDATE synchservers SET ip='ds06-replica.3ccloud.com' WHERE secret='DASHBOARD_KEY';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> exit
+Bye
+[svr06-replica.3ccloud.com lib]#cd /opt/code/rel_4_6/
+cs30OCT2013/ ds30OCT2013/ ms30OCT2013/ 
+[svr06-replica.3ccloud.com lib]#cd /opt/code/rel_4_6/
+cs30OCT2013/ ds30OCT2013/ ms30OCT2013/ 
+[svr06-replica.3ccloud.com lib]#cd /opt/code/rel_4_6/ms30OCT2013/
+[svr06-replica.3ccloud.com ms30OCT2013]#ant -f liquibase.xml patch-all
+Buildfile: /opt/code/rel_4_6/ms30OCT2013/liquibase.xml
+
+prepare:
+     [echo] Classpath = /opt/code/lib/ant-ext/ant-contrib-1.0b3.jar:/opt/code/lib/commons-lang-3/commons-lang3-3.1.jar:/opt/code/lib/liquibase/liquibase-3clant.jar:/opt/code/lib/liquibase/liquibase.jar:/opt/code/lib/mysql-connector/mysql-connector-java-5.1.18-bin.jar
+
+tag-conditional:
+    [input] 
+    [input] 			Do you want to tag
+    [input] 			database before running this changeset[Y/N]?
+    [input] 		 [N]
+
+
+patch-all:
+[callcenterpatch] running Changesets on callcenter >> TrilTrilSVR06 with ccid = 1271
+[callcenterpatch] INFO 4/2/15 2:13 PM:liquibase: Successfully acquired change log lock
+[callcenterpatch] INFO 4/2/15 2:13 PM:liquibase: ./rootChangeLog.xml is using schema version 1.9 rather than version 2.0
+[callcenterpatch] INFO 4/2/15 2:13 PM:liquibase: Reading from `cc_1271`.`DATABASECHANGELOG`
+[callcenterpatch] INFO 4/2/15 2:13 PM:liquibase: Reading from `cc_1271`.`DATABASECHANGELOG`
+[callcenterpatch] INFO 4/2/15 2:13 PM:liquibase: ChangeSet ./sql/mysql/migrate/migrate.xml::r2.000::arizwan@3clogic.com ran successfully in 1381ms
+[callcenterpatch] INFO 4/2/15 2:13 PM:liquibase: Successfully released change log lock
+[callcenterpatch] running Changesets on callcenter >> Spring Ventures - GenLife with ccid = 1274
+[callcenterpatch] INFO 4/2/15 2:13 PM:liquibase: Successfully acquired change log lock
+[callcenterpatch] INFO 4/2/15 2:13 PM:liquibase: ./rootChangeLog.xml is using schema version 1.9 rather than version 2.0
+[callcenterpatch] INFO 4/2/15 2:13 PM:liquibase: Reading from `cc_1274`.`DATABASECHANGELOG`
+
+
+
+
+[callcenterpatch] INFO 4/2/15 2:18 PM:liquibase: ChangeSet ./sql/mysql/migrate/migrate.xml::r2.000::arizwan@3clogic.com ran successfully in 317134ms
+[callcenterpatch] INFO 4/2/15 2:18 PM:liquibase: Successfully released change log lock
+[callcenterpatch] running Changesets on callcenter >> The Wisdom Center with ccid = 1283
+[callcenterpatch] INFO 4/2/15 2:18 PM:liquibase: Successfully acquired change log lock
+[callcenterpatch] INFO 4/2/15 2:18 PM:liquibase: ./rootChangeLog.xml is using schema version 1.9 rather than version 2.0
+[callcenterpatch] INFO 4/2/15 2:18 PM:liquibase: Reading from `cc_1283`.`DATABASECHANGELOG`
+[callcenterpatch] INFO 4/2/15 2:18 PM:liquibase: ChangeSet ./sql/mysql/migrate/migrate.xml::r2.000::arizwan@3clogic.com ran successfully in 377ms
+[callcenterpatch] INFO 4/2/15 2:18 PM:liquibase: Successfully released change log lock
+[callcenterpatch] running Changesets on callcenter >> HomesandLand with ccid = 1295
+[callcenterpatch] INFO 4/2/15 2:18 PM:liquibase: Successfully acquired change log lock
+[callcenterpatch] INFO 4/2/15 2:18 PM:liquibase: ./rootChangeLog.xml is using schema version 1.9 rather than version 2.0
+[callcenterpatch] INFO 4/2/15 2:18 PM:liquibase: Reading from `cc_1295`.`DATABASECHANGELOG`
+[callcenterpatch] INFO 4/2/15 2:18 PM:liquibase: ChangeSet ./sql/mysql/migrate/migrate.xml::r2.000::arizwan@3clogic.com ran successfully in 14658ms
+[callcenterpatch] INFO 4/2/15 2:18 PM:liquibase: Successfully released change log lock
+[callcenterpatch] running Changesets on callcenter >> Disability Digest with ccid = 1299
+[callcenterpatch] INFO 4/2/15 2:18 PM:liquibase: Successfully acquired change log lock
+[callcenterpatch] INFO 4/2/15 2:18 PM:liquibase: ./rootChangeLog.xml is using schema version 1.9 rather than version 2.0
+[callcenterpatch] INFO 4/2/15 2:18 PM:liquibase: Reading from `cc_1299`.`DATABASECHANGELOG`
+[callcenterpatch] INFO 4/2/15 2:18 PM:liquibase: ChangeSet ./sql/mysql/migrate/migrate.xml::r2.000::arizwan@3clogic.com ran successfully in 4551ms
+[callcenterpatch] INFO 4/2/15 2:18 PM:liquibase: Successfully released change log lock
+[callcenterpatch] running Changesets on callcenter >> SIC Test Dialer with ccid = 1301
+[callcenterpatch] INFO 4/2/15 2:18 PM:liquibase: Successfully acquired change log lock
+[callcenterpatch] INFO 4/2/15 2:18 PM:liquibase: ./rootChangeLog.xml is using schema version 1.9 rather than version 2.0
+[callcenterpatch] INFO 4/2/15 2:18 PM:liquibase: Reading from `cc_1301`.`DATABASECHANGELOG`
+[callcenterpatch] INFO 4/2/15 2:18 PM:liquibase: ChangeSet ./sql/mysql/migrate/migrate.xml::r2.000::arizwan@3clogic.com ran successfully in 1329ms
+[callcenterpatch] INFO 4/2/15 2:18 PM:liquibase: Successfully released change log lock
+[callcenterpatch] running Changesets on callcenter >> Can-Call Management Inc with ccid = 1302
+[callcenterpatch] INFO 4/2/15 2:18 PM:liquibase: Successfully acquired change log lock
+[callcenterpatch] INFO 4/2/15 2:18 PM:liquibase: ./rootChangeLog.xml is using schema version 1.9 rather than version 2.0
+[callcenterpatch] INFO 4/2/15 2:18 PM:liquibase: Reading from `cc_1302`.`DATABASECHANGELOG`
+[callcenterpatch] INFO 4/2/15 2:20 PM:liquibase: ChangeSet ./sql/mysql/migrate/migrate.xml::r2.000::arizwan@3clogic.com ran successfully in 92613ms
+[callcenterpatch] INFO 4/2/15 2:20 PM:liquibase: Successfully released change log lock
+[callcenterpatch] running Changesets on callcenter >> SIP2 testing3 with ccid = 1308
+[callcenterpatch] INFO 4/2/15 2:20 PM:liquibase: Successfully acquired change log lock
+[callcenterpatch] INFO 4/2/15 2:20 PM:liquibase: ./rootChangeLog.xml is using schema version 1.9 rather than version 2.0
+[callcenterpatch] INFO 4/2/15 2:20 PM:liquibase: Reading from `cc_1308`.`DATABASECHANGELOG`
+[callcenterpatch] INFO 4/2/15 2:20 PM:liquibase: ChangeSet ./sql/mysql/migrate/migrate.xml::r2.000::arizwan@3clogic.com ran successfully in 1509ms
+[callcenterpatch] INFO 4/2/15 2:20 PM:liquibase: Successfully released change log lock
+[callcenterpatch] running Changesets on callcenter >> Gordon Business Solutions with ccid = 1313
+[callcenterpatch] INFO 4/2/15 2:20 PM:liquibase: Successfully acquired change log lock
+[callcenterpatch] INFO 4/2/15 2:20 PM:liquibase: ./rootChangeLog.xml is using schema version 1.9 rather than version 2.0
+[callcenterpatch] INFO 4/2/15 2:20 PM:liquibase: Reading from `cc_1313`.`DATABASECHANGELOG`
+[callcenterpatch] INFO 4/2/15 2:20 PM:liquibase: ChangeSet ./sql/mysql/migrate/migrate.xml::r2.000::arizwan@3clogic.com ran successfully in 5396ms
+[callcenterpatch] INFO 4/2/15 2:20 PM:liquibase: Successfully released change log lock
+[callcenterpatch] running Changesets on callcenter >> Midland Sales and Marketing with ccid = 1315
+[callcenterpatch] INFO 4/2/15 2:20 PM:liquibase: Successfully acquired change log lock
+[callcenterpatch] INFO 4/2/15 2:20 PM:liquibase: ./rootChangeLog.xml is using schema version 1.9 rather than version 2.0
+[callcenterpatch] INFO 4/2/15 2:20 PM:liquibase: Reading from `cc_1315`.`DATABASECHANGELOG`
+[callcenterpatch] INFO 4/2/15 2:20 PM:liquibase: ChangeSet ./sql/mysql/migrate/migrate.xml::r2.000::arizwan@3clogic.com ran successfully in 3292ms
+[callcenterpatch] INFO 4/2/15 2:20 PM:liquibase: Successfully released change log lock
+[callcenterpatch] running Changesets on callcenter >> AFR Direct with ccid = 1319
+[callcenterpatch] INFO 4/2/15 2:20 PM:liquibase: Successfully acquired change log lock
+[callcenterpatch] INFO 4/2/15 2:20 PM:liquibase: ./rootChangeLog.xml is using schema version 1.9 rather than version 2.0
+[callcenterpatch] INFO 4/2/15 2:20 PM:liquibase: Reading from `cc_1319`.`DATABASECHANGELOG`
+[callcenterpatch] INFO 4/2/15 2:20 PM:liquibase: ChangeSet ./sql/mysql/migrate/migrate.xml::r2.000::arizwan@3clogic.com ran successfully in 1104ms
+[callcenterpatch] INFO 4/2/15 2:20 PM:liquibase: Successfully released change log lock
+[callcenterpatch] running Changesets on callcenter >> Birch Enterprises with ccid = 1331
+[callcenterpatch] INFO 4/2/15 2:20 PM:liquibase: Successfully acquired change log lock
+[callcenterpatch] INFO 4/2/15 2:20 PM:liquibase: ./rootChangeLog.xml is using schema version 1.9 rather than version 2.0
+[callcenterpatch] INFO 4/2/15 2:20 PM:liquibase: Reading from `cc_1331`.`DATABASECHANGELOG`
+[callcenterpatch] INFO 4/2/15 2:20 PM:liquibase: ChangeSet ./sql/mysql/migrate/migrate.xml::r2.000::arizwan@3clogic.com ran successfully in 7809ms
+[callcenterpatch] INFO 4/2/15 2:20 PM:liquibase: Successfully released change log lock
+[callcenterpatch] running Changesets on callcenter >> ccallcenter with ccid = 1329
+[callcenterpatch] INFO 4/2/15 2:20 PM:liquibase: Successfully acquired change log lock
+[callcenterpatch] INFO 4/2/15 2:20 PM:liquibase: ./rootChangeLog.xml is using schema version 1.9 rather than version 2.0
+[callcenterpatch] INFO 4/2/15 2:20 PM:liquibase: Reading from `cc_1329`.`DATABASECHANGELOG`
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: ChangeSet ./sql/mysql/migrate/migrate.xml::r2.000::arizwan@3clogic.com ran successfully in 325824ms
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: Successfully released change log lock
+[callcenterpatch] running Changesets on callcenter >> The Eureka Project with ccid = 1334
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: Successfully acquired change log lock
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: ./rootChangeLog.xml is using schema version 1.9 rather than version 2.0
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: Reading from `cc_1334`.`DATABASECHANGELOG`
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: ChangeSet ./sql/mysql/migrate/migrate.xml::r2.000::arizwan@3clogic.com ran successfully in 8093ms
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: Successfully released change log lock
+[callcenterpatch] running Changesets on callcenter >> Greatbatch Service Desk with ccid = 1335
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: Successfully acquired change log lock
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: ./rootChangeLog.xml is using schema version 1.9 rather than version 2.0
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: Reading from `cc_1335`.`DATABASECHANGELOG`
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: ChangeSet ./sql/mysql/migrate/migrate.xml::r2.000::arizwan@3clogic.com ran successfully in 4796ms
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: Successfully released change log lock
+[callcenterpatch] running Changesets on callcenter >> Brg L Solutions with ccid = 1337
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: Successfully acquired change log lock
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: ./rootChangeLog.xml is using schema version 1.9 rather than version 2.0
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: Reading from `cc_1337`.`DATABASECHANGELOG`
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: ChangeSet ./sql/mysql/migrate/migrate.xml::r2.000::arizwan@3clogic.com ran successfully in 1185ms
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: Successfully released change log lock
+[callcenterpatch] running Changesets on callcenter >> Certified Funding Capital with ccid = 1339
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: Successfully acquired change log lock
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: ./rootChangeLog.xml is using schema version 1.9 rather than version 2.0
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: Reading from `cc_1339`.`DATABASECHANGELOG`
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: ChangeSet ./sql/mysql/migrate/migrate.xml::r2.000::arizwan@3clogic.com ran successfully in 457ms
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: Successfully released change log lock
+[callcenterpatch] running Changesets on callcenter >> Carrie with ccid = 1340
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: Successfully acquired change log lock
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: ./rootChangeLog.xml is using schema version 1.9 rather than version 2.0
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: Reading from `cc_1340`.`DATABASECHANGELOG`
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: ChangeSet ./sql/mysql/migrate/migrate.xml::r2.000::arizwan@3clogic.com ran successfully in 9378ms
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: Successfully released change log lock
+[callcenterpatch] running Changesets on callcenter >> ARMC with ccid = 1344
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: Successfully acquired change log lock
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: ./rootChangeLog.xml is using schema version 1.9 rather than version 2.0
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: Reading from `cc_1344`.`DATABASECHANGELOG`
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: ChangeSet ./sql/mysql/migrate/migrate.xml::r2.000::arizwan@3clogic.com ran successfully in 13096ms
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: Successfully released change log lock
+[callcenterpatch] running Changesets on callcenter >> iPolicy Brokerage with ccid = 1345
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: Successfully acquired change log lock
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: ./rootChangeLog.xml is using schema version 1.9 rather than version 2.0
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: Reading from `cc_1345`.`DATABASECHANGELOG`
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: ChangeSet ./sql/mysql/migrate/migrate.xml::r2.000::arizwan@3clogic.com ran successfully in 1434ms
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: Successfully released change log lock
+[callcenterpatch] running Changesets on callcenter >> Cuba Cruise with ccid = 1349
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: Successfully acquired change log lock
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: ./rootChangeLog.xml is using schema version 1.9 rather than version 2.0
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: Reading from `cc_1349`.`DATABASECHANGELOG`
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: ChangeSet ./sql/mysql/migrate/migrate.xml::r2.000::arizwan@3clogic.com ran successfully in 4294ms
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: Successfully released change log lock
+[callcenterpatch] running Changesets on callcenter >> Scottsdale with ccid = 1360
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: Successfully acquired change log lock
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: ./rootChangeLog.xml is using schema version 1.9 rather than version 2.0
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: Reading from `cc_1360`.`DATABASECHANGELOG`
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: ChangeSet ./sql/mysql/migrate/migrate.xml::r2.000::arizwan@3clogic.com ran successfully in 5871ms
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: Successfully released change log lock
+[callcenterpatch] running Changesets on callcenter >> Jack Keeter Call Center with ccid = 1363
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: Successfully acquired change log lock
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: ./rootChangeLog.xml is using schema version 1.9 rather than version 2.0
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: Reading from `cc_1363`.`DATABASECHANGELOG`
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: ChangeSet ./sql/mysql/migrate/migrate.xml::r2.000::arizwan@3clogic.com ran successfully in 965ms
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: Successfully released change log lock
+[callcenterpatch] running Changesets on callcenter >> Deer Valley Plumbing with ccid = 1365
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: Successfully acquired change log lock
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: ./rootChangeLog.xml is using schema version 1.9 rather than version 2.0
+[callcenterpatch] INFO 4/2/15 2:26 PM:liquibase: Reading from `cc_1365`.`DATABASECHANGELOG`
+[callcenterpatch] INFO 4/2/15 2:27 PM:liquibase: ChangeSet ./sql/mysql/migrate/migrate.xml::r2.000::arizwan@3clogic.com ran successfully in 1843ms
+[callcenterpatch] INFO 4/2/15 2:27 PM:liquibase: Successfully released change log lock
+[callcenterpatch] running Changesets on callcenter >> LifeSOULutions That Work LLC with ccid = 1367
+[callcenterpatch] INFO 4/2/15 2:27 PM:liquibase: Successfully acquired change log lock
+[callcenterpatch] INFO 4/2/15 2:27 PM:liquibase: ./rootChangeLog.xml is using schema version 1.9 rather than version 2.0
+[callcenterpatch] INFO 4/2/15 2:27 PM:liquibase: Reading from `cc_1367`.`DATABASECHANGELOG`
+[callcenterpatch] INFO 4/2/15 2:27 PM:liquibase: ChangeSet ./sql/mysql/migrate/migrate.xml::r2.000::arizwan@3clogic.com ran successfully in 12327ms
+[callcenterpatch] INFO 4/2/15 2:27 PM:liquibase: Successfully released change log lock
+[callcenterpatch] running Changesets on callcenter >> PDS Energy with ccid = 1371
+[callcenterpatch] INFO 4/2/15 2:27 PM:liquibase: Successfully acquired change log lock
+[callcenterpatch] INFO 4/2/15 2:27 PM:liquibase: ./rootChangeLog.xml is using schema version 1.9 rather than version 2.0
+[callcenterpatch] INFO 4/2/15 2:27 PM:liquibase: Reading from `cc_1371`.`DATABASECHANGELOG`
+[callcenterpatch] INFO 4/2/15 2:27 PM:liquibase: ChangeSet ./sql/mysql/migrate/migrate.xml::r2.000::arizwan@3clogic.com ran successfully in 864ms
+[callcenterpatch] INFO 4/2/15 2:27 PM:liquibase: Successfully released change log lock
+[callcenterpatch] running Changesets on callcenter >> Interstate Recovery Services with ccid = 1373
+[callcenterpatch] INFO 4/2/15 2:27 PM:liquibase: Successfully acquired change log lock
+[callcenterpatch] INFO 4/2/15 2:27 PM:liquibase: ./rootChangeLog.xml is using schema version 1.9 rather than version 2.0
+[callcenterpatch] INFO 4/2/15 2:27 PM:liquibase: Reading from `cc_1373`.`DATABASECHANGELOG`
+^[[A^[[A^[[A
+
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: ChangeSet ./sql/mysql/migrate/migrate.xml::r2.000::arizwan@3clogic.com ran successfully in 1214326ms
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: Successfully released change log lock
+[callcenterpatch] running Changesets on callcenter >> AP LINK with ccid = 1376
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: Successfully acquired change log lock
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: ./rootChangeLog.xml is using schema version 1.9 rather than version 2.0
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: Reading from `cc_1376`.`DATABASECHANGELOG`
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: ChangeSet ./sql/mysql/migrate/migrate.xml::r2.000::arizwan@3clogic.com ran successfully in 1307ms
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: Successfully released change log lock
+[callcenterpatch] running Changesets on callcenter >> VoIPSupply with ccid = 1375
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: Successfully acquired change log lock
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: ./rootChangeLog.xml is using schema version 1.9 rather than version 2.0
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: Reading from `cc_1375`.`DATABASECHANGELOG`
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: ChangeSet ./sql/mysql/migrate/migrate.xml::r2.000::arizwan@3clogic.com ran successfully in 599ms
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: Successfully released change log lock
+[callcenterpatch] running Changesets on callcenter >> Scissortail Residental Realty with ccid = 1379
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: Successfully acquired change log lock
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: ./rootChangeLog.xml is using schema version 1.9 rather than version 2.0
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: Reading from `cc_1379`.`DATABASECHANGELOG`
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: ChangeSet ./sql/mysql/migrate/migrate.xml::r2.000::arizwan@3clogic.com ran successfully in 668ms
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: Successfully released change log lock
+[callcenterpatch] running Changesets on callcenter >> ServiceNow Call Center with ccid = 1380
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: Successfully acquired change log lock
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: ./rootChangeLog.xml is using schema version 1.9 rather than version 2.0
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: Reading from `cc_1380`.`DATABASECHANGELOG`
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: ChangeSet ./sql/mysql/migrate/migrate.xml::r2.000::arizwan@3clogic.com ran successfully in 847ms
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: Successfully released change log lock
+[callcenterpatch] running Changesets on callcenter >> Brook Valley with ccid = 1385
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: Successfully acquired change log lock
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: ./rootChangeLog.xml is using schema version 1.9 rather than version 2.0
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: Reading from `cc_1385`.`DATABASECHANGELOG`
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: ChangeSet ./sql/mysql/migrate/migrate.xml::r2.000::arizwan@3clogic.com ran successfully in 729ms
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: Successfully released change log lock
+[callcenterpatch] running Changesets on callcenter >> Simplicity Collect Demo with ccid = 1387
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: Successfully acquired change log lock
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: ./rootChangeLog.xml is using schema version 1.9 rather than version 2.0
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: Reading from `cc_1387`.`DATABASECHANGELOG`
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: ChangeSet ./sql/mysql/migrate/migrate.xml::r2.000::arizwan@3clogic.com ran successfully in 920ms
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: Successfully released change log lock
+[callcenterpatch] running Changesets on callcenter >> 3CLogic Upgrade Center with ccid = 1406
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: Successfully acquired change log lock
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: ./rootChangeLog.xml is using schema version 1.9 rather than version 2.0
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: Reading from `cc_1406`.`DATABASECHANGELOG`
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: ChangeSet ./sql/mysql/migrate/migrate.xml::r2.000::arizwan@3clogic.com ran successfully in 948ms
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: Successfully released change log lock
+[callcenterpatch] running Changesets on callcenter >> Tier 1 Extravaganza with ccid = 1411
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: Successfully acquired change log lock
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: ./rootChangeLog.xml is using schema version 1.9 rather than version 2.0
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: Reading from `cc_1411`.`DATABASECHANGELOG`
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: ChangeSet ./sql/mysql/migrate/migrate.xml::r2.000::arizwan@3clogic.com ran successfully in 426ms
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: Successfully released change log lock
+[callcenterpatch] running Changesets on callcenter >> IncredibleIndia with ccid = 1440
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: Successfully acquired change log lock
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: ./rootChangeLog.xml is using schema version 1.9 rather than version 2.0
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: Reading from `cc_1440`.`DATABASECHANGELOG`
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: ChangeSet ./sql/mysql/migrate/migrate.xml::r2.000::arizwan@3clogic.com ran successfully in 444ms
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: Successfully released change log lock
+[callcenterpatch] running Changesets on callcenter >> Dialer with ccid = 1459
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: Successfully acquired change log lock
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: ./rootChangeLog.xml is using schema version 1.9 rather than version 2.0
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: Reading from `cc_1459`.`DATABASECHANGELOG`
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: ChangeSet ./sql/mysql/migrate/migrate.xml::r2.000::arizwan@3clogic.com ran successfully in 692ms
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: Successfully released change log lock
+[callcenterpatch] running Changesets on callcenter >> SVG Sandbox with ccid = 1480
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: Successfully acquired change log lock
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: ./rootChangeLog.xml is using schema version 1.9 rather than version 2.0
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: Reading from `cc_1480`.`DATABASECHANGELOG`
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: ChangeSet ./sql/mysql/migrate/migrate.xml::r2.000::arizwan@3clogic.com ran successfully in 234ms
+[callcenterpatch] INFO 4/2/15 2:47 PM:liquibase: Successfully released change log lock
+
+BUILD SUCCESSFUL
+Total time: 34 minutes 38 seconds
+[svr06-replica.3ccloud.com ms30OCT2013]#
+[svr06-replica.3ccloud.com ms30OCT2013]#
+[svr06-replica.3ccloud.com ms30OCT2013]#
+[svr06-replica.3ccloud.com ms30OCT2013]#
+[svr06-replica.3ccloud.com ms30OCT2013]#mysql -u root -p
+Enter password: 
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+[svr06-replica.3ccloud.com ms30OCT2013]#
+[svr06-replica.3ccloud.com ms30OCT2013]#
+[svr06-replica.3ccloud.com ms30OCT2013]#
+[svr06-replica.3ccloud.com ms30OCT2013]#
+[svr06-replica.3ccloud.com ms30OCT2013]#cd ..
+[svr06-replica.3ccloud.com rel_4_6]#ls
+cs30OCT2013  ds30OCT2013  ms30OCT2013
+[svr06-replica.3ccloud.com rel_4_6]#cd ..
+[svr06-replica.3ccloud.com code]#ls
+code_5.3.1  lib  rel_4_6  upgrade_new  upgrade_new.tgz
+[svr06-replica.3ccloud.com code]#cd code_5.3.1/
+[svr06-replica.3ccloud.com code_5.3.1]#ls
+cs_5.3.1.66803  ds_5.3.1.66714  ms_5.3.1.66794
+[svr06-replica.3ccloud.com code_5.3.1]#cd ms_5.3.1.66794/
+[svr06-replica.3ccloud.com ms_5.3.1.66794]#mvn process-resources
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building ms 5.3.1
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- 3cdeploy-maven-plugin:0.0.1:bootstrap (default) @ ms ---
+[WARNING] Download jars from http://jax-ws.java.net/ and copy them into /usr/share/tomcat7/tail/../lib 
+Don't forget to Restasrt tomcat
+[WARNING] Download jars from http://jax-ws.java.net/ and copy them into /usr/share/tomcat7/tail/../lib 
+Don't forget to Restasrt tomcat
+[WARNING] Download jars from http://jax-ws.java.net/ and copy them into /usr/share/tomcat7/tail/../lib 
+Don't forget to Restasrt tomcat
+[WARNING] Download jars from http://jax-ws.java.net/ and copy them into /usr/share/tomcat7/tail/../lib 
+Don't forget to Restasrt tomcat
+[WARNING] Download jars from http://jax-ws.java.net/ and copy them into /usr/share/tomcat7/tail/../lib 
+Don't forget to Restasrt tomcat
+[WARNING] Download jars from http://jax-ws.java.net/ and copy them into /usr/share/tomcat7/tail/../lib 
+Don't forget to Restasrt tomcat
+[INFO] DB with name metadata exists
+[INFO] 
+[INFO] --- build-helper-maven-plugin:1.5:parse-version (parse-version) @ ms ---
+[INFO] 
+[INFO] --- cxf-codegen-plugin:2.7.8:wsdl2java (generate-sources) @ ms ---
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ ms ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 178 resources
+[INFO] Copying 2 resources
+[INFO] Copying 2 resources
+[INFO] 
+[INFO] --- liquibase-maven-plugin:3.2.2:update (normal) @ ms ---
+[INFO] ------------------------------------------------------------------------
+[INFO] Parsing Liquibase Properties File
+[INFO]   File: src/main/resources/liquibase/liquibase.properties
+[INFO]   'installation.dashboard.domain' in properties file is not being used by this task.
+[INFO]   'installation.default.max.clientversion' in properties file is not being used by this task.
+[INFO]   'installation.sip.domain' in properties file is not being used by this task.
+[INFO]   'installation.monitor.url' in properties file is not being used by this task.
+[INFO]   'installation.email.enabled' in properties file is not being used by this task.
+[INFO]   'installation.email.smtp.address' in properties file is not being used by this task.
+[INFO]   'installation.reporting.domain' in properties file is not being used by this task.
+[INFO]   'installation.recording.domain' in properties file is not being used by this task.
+[INFO]   'installation.email.smtp.port' in properties file is not being used by this task.
+[INFO]   'installation.email.smtp.auth' in properties file is not being used by this task.
+[INFO]   'installation.default.min.clientversion' in properties file is not being used by this task.
+[INFO]   'default.contexts' in properties file is not being used by this task.
+[INFO]   'db.changelog.file' in properties file is not being used by this task.
+[INFO]   'installation.domain' in properties file is not being used by this task.
+[INFO]   'installation.email.smtp.ssl' in properties file is not being used by this task.
+[INFO]   'installation.email.password' in properties file is not being used by this task.
+[INFO]   'installation.self.domain' in properties file is not being used by this task.
+[INFO]   'installation.domain.secured' in properties file is not being used by this task.
+[INFO]   'installation.email.username' in properties file is not being used by this task.
+[INFO]   'installation.name' in properties file is not being used by this task.
+[INFO]   'installation.email.from' in properties file is not being used by this task.
+[INFO] ------------------------------------------------------------------------
+[INFO] Executing on Database: jdbc:mysql://127.0.0.1:3306/mysql?autoReconnect=true&characterEncoding=UTF8&characterSetResults=UTF8
+INFO 4/2/15 2:53 PM: liquibase: Successfully acquired change log lock
+INFO 4/2/15 2:53 PM: liquibase: Reading from mysql.DATABASECHANGELOG
+INFO 4/2/15 2:53 PM: liquibase: Successfully released change log lock
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] 
+[INFO] --- maven-antrun-plugin:1.7:run (liquibase-step) @ ms ---
+[INFO] Executing tasks
+
+main:
+
+prepare:
+
+tag-conditional:
+
+				Do you want to tag
+				database before running this changeset[Y/N]?
+			 [N]
+
+
+update:
+INFO 4/2/15 2:53 PM:liquibase: Successfully acquired change log lock
+INFO 4/2/15 2:53 PM:liquibase: src/main/resources/liquibase/rootChangeLog.xml is using schema version 1.9 rather than version 2.0
+INFO 4/2/15 2:53 PM:liquibase: Creating database history table with name: `metadata`.`DATABASECHANGELOG`
+INFO 4/2/15 2:53 PM:liquibase: Reading from `metadata`.`DATABASECHANGELOG`
+INFO 4/2/15 2:53 PM:liquibase: Reading from `metadata`.`DATABASECHANGELOG`
+INFO 4/2/15 2:53 PM:liquibase: ChangeSet src/main/resources/sql/mysql/upgrade/metadata/5.3.1/5.3.1.000.xml::5.3.0_metadata_5.3.0.000::stiwari@3clogic.com ran successfully in 22ms
+INFO 4/2/15 2:53 PM:liquibase: ChangeSet src/main/resources/sql/mysql/upgrade/metadata/5.3.1/5.3.1.001.xml::5.3.1_metadata_5.3.1.001::stiwaril@3clogic.com ran successfully in 5ms
+INFO 4/2/15 2:53 PM:liquibase: Successfully released change log lock
+[INFO] Executed tasks
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 9.456s
+[INFO] Finished at: Wed Feb 04 14:53:11 UTC 2015
+[INFO] Final Memory: 25M/284M
+[INFO] ------------------------------------------------------------------------
+[svr06-replica.3ccloud.com ms_5.3.1.66794]#cd ../ds_5.3.1.66714/
+[svr06-replica.3ccloud.com ds_5.3.1.66714]#mvn process-resources
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building ds 5.3.1
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- 3cdeploy-maven-plugin:0.0.1:bootstrap (default) @ ds ---
+[WARNING] Download jars from http://jax-ws.java.net/ and copy them into /usr/share/tomcat7/tail/../lib 
+Don't forget to Restasrt tomcat
+[WARNING] Download jars from http://jax-ws.java.net/ and copy them into /usr/share/tomcat7/tail/../lib 
+Don't forget to Restasrt tomcat
+[WARNING] Download jars from http://jax-ws.java.net/ and copy them into /usr/share/tomcat7/tail/../lib 
+Don't forget to Restasrt tomcat
+[WARNING] Download jars from http://jax-ws.java.net/ and copy them into /usr/share/tomcat7/tail/../lib 
+Don't forget to Restasrt tomcat
+[WARNING] Download jars from http://jax-ws.java.net/ and copy them into /usr/share/tomcat7/tail/../lib 
+Don't forget to Restasrt tomcat
+[WARNING] Download jars from http://jax-ws.java.net/ and copy them into /usr/share/tomcat7/tail/../lib 
+Don't forget to Restasrt tomcat
+[INFO] DB with name db_metadata exists
+[INFO] 
+[INFO] --- build-helper-maven-plugin:1.5:parse-version (parse-version) @ ds ---
+[INFO] 
+[INFO] --- cxf-codegen-plugin:2.7.8:wsdl2java (generate-sources) @ ds ---
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ ds ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 222 resources
+[INFO] 
+[INFO] --- liquibase-maven-plugin:3.2.2:update (normal) @ ds ---
+[INFO] ------------------------------------------------------------------------
+[INFO] Parsing Liquibase Properties File
+[INFO]   File: src/main/resources/liquibase/liquibase.properties
+[INFO]   'db.changelog.file' in properties file is not being used by this task.
+[INFO]   'default.contexts' in properties file is not being used by this task.
+[INFO] ------------------------------------------------------------------------
+[INFO] Executing on Database: jdbc:mysql://127.0.0.1:3306/mysql?autoReconnect=true&characterEncoding=UTF8&characterSetResults=UTF8
+INFO 4/2/15 2:53 PM: liquibase: Successfully acquired change log lock
+INFO 4/2/15 2:53 PM: liquibase: Reading from mysql.DATABASECHANGELOG
+INFO 4/2/15 2:53 PM: liquibase: Successfully released change log lock
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] 
+[INFO] --- maven-antrun-plugin:1.7:run (liquibase-step) @ ds ---
+[INFO] Executing tasks
+
+main:
+
+prepare:
+
+tag-conditional:
+
+				Do you want to tag
+				database before running this changeset[Y/N]?
+			 [N]
+
+
+update:
+INFO 4/2/15 2:53 PM:liquibase: Successfully acquired change log lock
+INFO 4/2/15 2:53 PM:liquibase: src/main/resources/liquibase/rootChangeLog.xml is using schema version 1.9 rather than version 2.0
+INFO 4/2/15 2:53 PM:liquibase: Creating database history table with name: `db_metadata`.`DATABASECHANGELOG`
+INFO 4/2/15 2:53 PM:liquibase: Reading from `db_metadata`.`DATABASECHANGELOG`
+INFO 4/2/15 2:53 PM:liquibase: Reading from `db_metadata`.`DATABASECHANGELOG`
+INFO 4/2/15 2:53 PM:liquibase: ChangeSet src/main/resources/sql/mysql/upgrade/db_metadata/5.3.1/5.3.1.000.xml::5.3.0_metadata_5.3.0.000::stiwari@3clogic.com ran successfully in 7ms
+INFO 4/2/15 2:53 PM:liquibase: Successfully released change log lock
+[INFO] Executed tasks
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 8.708s
+[INFO] Finished at: Wed Feb 04 14:53:30 UTC 2015
+[INFO] Final Memory: 24M/284M
+[INFO] ------------------------------------------------------------------------
+[svr06-replica.3ccloud.com ds_5.3.1.66714]#Write failed: Broken pipe
+kadmin@kadmin-Lenovo-G500:~/Documents/Dropbox/Important_Keys$ 
+

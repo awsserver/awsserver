@@ -1,0 +1,25 @@
+cd /opt
+wget http://chef-server.3ccloud.com:8098/downloads/jdk-7u51-linux-x64.tar.gz
+tar xvf jdk-7u51-linux-x64.tar.gz
+
+vim ~/.bashrc
+**ADD following line**
+export JAVA_HOME=/opt/jdk1.7.0_51
+**SAVE & CLOSE file**
+
+source ~/.bashrc
+
+cd /usr/bin
+ls -l |grep java
+
+rm java
+rm javac
+rm javaw
+(IF SYMBOLIC LINKS EXIST)
+
+ln -s /opt/jdk1.7.0_51/bin/java .
+ln -s /opt/jdk1.7.0_51/bin/javac .
+ln -s /opt/jdk1.7.0_51/bin/javaw .
+ln -s /opt/jdk1.7.0_51/bin/wsimport .
+
+

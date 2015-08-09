@@ -1,0 +1,188 @@
+
+		########################################################################################################
+		## ---                                Welcome to 3clogic Private Limited                         ---  ## 
+		##    |                         All connections are monitored and recorded                          | ##
+		## ---                   Disconnect IMMEDIATELY if you are not an authorized user!               ---  ##
+		##    |                                                                                             | ##
+		## ---                                                                                           ---  ##
+		########################################################################################################
+cd /mnt/data/upgradeclient/
+nohup ant run &
+
+							
+LOGIN SERVER DETAILS 
+================================================================================================================================================
+================================================================================================================================================
+
+						SIP TESTING SERVER LOGIN DETAILS
+================================================================================================================================================
+================================================================================================================================================
+
+sudo ssh -i callcenter.pem ec2-user@lb1.sip.3ccloud.com -v  
+
+Slave Mysql replica running on this server and master running on mycall-testing.3ccloud.com [Master (mysql -u torment -h webastra-ls.c8aqanvkjwjr.us-east-1.rds.amazonaws.com -pnarsimunj!
+
+mysql -u root -pnew-password  
+
+CHANGE MASTER TO MASTER_HOST='webastra-ls.c8aqanvkjwjr.us-east-1.rds.amazonaws.com',MASTER_USER='torment1', MASTER_PASSWORD='narsimunj!', MASTER_LOG_FILE='mysql-bin-changelog.045392', MASTER_LOG_POS=  410;
+
+================================================================================================================================================
+
+sudo ssh -i callcenter.pem ec2-user@lb2.sip.3ccloud.com -v
+
+Slave Mysql replica running on this server and master running on mycall-testing.3ccloud.com [Master (mysql -u torment -h webastra-ls.c8aqanvkjwjr.us-east-1.rds.amazonaws.com -pnarsimunj!
+
+mysql -u root -pnew-password
+
+CHANGE MASTER TO MASTER_HOST='webastra-ls.c8aqanvkjwjr.us-east-1.rds.amazonaws.com',MASTER_USER='torment1', MASTER_PASSWORD='narsimunj!', MASTER_LOG_FILE='mysql-bin-changelog.045392', MASTER_LOG_POS=  410;
+
+================================================================================================================================================
+
+sudo ssh -i chef.pem ec2-user@mycall-testing.3ccloud.com -v 
+
+This system Master (mysql -u torment -h webastra-ls.c8aqanvkjwjr.us-east-1.rds.amazonaws.com -pnarsimunj!)
+
+mysql -u torment -h webastra-ls.c8aqanvkjwjr.us-east-1.rds.amazonaws.com -pnarsimunj!	
+
+
+sudo ssh -i code.pem ec2-user@reporting02-testing.3ccloud.com
+
+
+
+6018066165
+================================================================================================================================================
+================================================================================================================================================
+						
+							CENTER LOGIN SERVER LOGIN DETAILS 
+sudo ssh -i callcenter.pem ec2-user@54.83.198.96
+
+================================================================================================================================================
+================================================================================================================================================
+sudo ssh -i chef.pem ec2-user@svr05-replica.3ccloud.com    [ For CS, DS, MS ]
+sudo ssh -i chef.pem ec2-user@svr02-testing.3ccloud.com
+sudo ssh -i chef.pem ec2-user@ds05-replica.3ccloud.com
+
+
+
+#sudo ssh -i mars\ -\ Copy.pem ec2-user@svr00.3ccloud.com -v
+================================================================================================================================================
+================================================================================================================================================
+							
+							SVN SERVER DETAILS 
+
+================================================================================================================================================
+================================================================================================================================================
+
+#ssh root@svn.3clogic.com
+password = s^u@3cl0g1c@com
+cd /etc/httpd/passwd/
+htpasswd -m passwords apushkaran
+dshekhar@#123
+================================================================================================================================================
+================================================================================================================================================
+							
+							JAPAN SERVER DETAILS 
+
+================================================================================================================================================
+================================================================================================================================================
+
+http://chef-server.3ccloud.com:8098/portal/main.php
+Genrate License Copy Key 
+
+sudo ssh -i marubeni_allpem.pem ec2-user@msys.3ccloud.com
+
+mysql -uroot -pcccl0g1c
+use webastra;
+
+
+select * from server;
+
+update server set `key`='ZecclNtzKqoRSeIy07qQejXclZDRRRMl4Gf7XE6oIkk+8uMkzahqIDiXvzzMRy/SQHYP7PiiBsDrbjlNsV1VZ5fA5rBQxLAl5iDxlHIJyorrr9O6TYzD+47PtK3nx2gzdR5glxkNyUL5nYqJHt03fnzPHRadrDsMAjxpNAcuwMmk0tDJpzX6A9csnn6MXYSuEVDz/kq4TT/mLTETuN3+VtW5O7+Ezn0zK24UzpwxClY=' where `ip`='svr01.msys.3ccloud.com';
+
+================================================================================================================================================
+================================================================================================================================================
+
+						ATHENA REPORTING TESTING SERVER LOGIN DETIALS
+
+================================================================================================================================================
+================================================================================================================================================
+sudo ssh -i code.pem ec2-user@reporting02-testing.3ccloud.com
+
+rwx421
+================================================================================================================================================
+================================================================================================================================================
+
+VPC	VPC	VPC	VPC	VPC	VPC	VPC	VPC	VPC	VPC	VPC	VPC	VPC	VPC	VPC	VPC	VPC	VPC	V
+
+================================================================================================================================================
+================================================================================================================================================
+SOPHOS FIREWALL GATEWAY IP ADDRESS 54.172.201.9
+
+KEYUSED = Rdstesting.pem
+
+sudo ssh -i Rdstesting.pem ec2-user@54.172.201.99 -p 2222
+sudo ssh -i Rdstesting.pem ec2-user@54.172.201.99 -p 2223
+sudo ssh -i Rdstesting.pem ec2-user@54.172.201.99 -p 2224
+sudo ssh -i Rdstesting.pem ec2-user@54.172.201.99 -p 2225
+
+================================================================================================================================================
+INSTANCE NAME IN 				IP-Address	  HOSTNAME				SSH PORT		
+================================================================================================================================================
+Rds-Ds-Testing-1A-Nv-Vpc-Application		172.16.3.12	Ds-Rds-Testing-Vpc-3-10		2224   	 
+Rds-Rep-Testing-1A-Nv-Vpc-Application		172.16.3.13	Rep-Rds-Testing-Vpc-3-10	2225		
+Rds-Ms-Testing-1A-Nv-Vpc-Application		172.16.3.11	Ms-Rds-Testing-Vpc-3-10		2223		
+Rds-Ls-Testing-1A-Nv-Vpc-Application		172.16.3.10	Ls-Rds-Testing-Vpc-3-10		2222		
+
+================================================================================================================================================
+Mysql RDS INSTANCES DETAILS
+
+================================================================================================================================================
+RDS INSTANCE NAME				DNS NAME USED BY AWS				DATABASE IPADDRESS
+================================================================================================================================================
+webastra-rds-ds	  	webastra-rds-ds.c8aqanvkjwjr.us-east-1.rds.amazonaws.com:3306  		172.16.3.139
+					webastra-rds-ds.c8aqanvkjwjr.us-east-1.rds.amazonaws.com:3306
+
+webastra-rds-ls		webastra-rds-ls.c8aqanvkjwjr.us-east-1.rds.amazonaws.com:3306		172.16.3.16
+					webastra-rds-ls.c8aqanvkjwjr.us-east-1.rds.amazonaws.com:3306
+
+webastra-rds-ms		webastra-rds-ms.c8aqanvkjwjr.us-east-1.rds.amazonaws.com:3306		172.16.3.37	
+					webastra-rds-ms.c8aqanvkjwjr.us-east-1.rds.amazonaws.com:3306
+
+
+webastra-rds-rep	webastra-rds-rep.c8aqanvkjwjr.us-east-1.rds.amazonaws.com:3306		172.16.6.247
+					webastra-rds-rep.c8aqanvkjwjr.us-east-1.rds.amazonaws.com:3306
+================================================================================================================================================sssss
+						WINDOW MACHINE FOR SERVICE NODE
+
+http://www.example42.com/tutorials/PuppetTutorial/#slide-89
+54.89.71.242 Window 
+Administrator
+webasTR@!
+
+https://d3w1xpp7d7qf3m.cloudfront.net/logo/1/logo.png
+		
+change logo in mycall centre 
+update deploymentproperties set value='http://svr07.3ccloud.com/image/3c.png' where depkey='installation.logo';
+cd /opt/code/code_5.3.1/pe_5.3.1.66482/
+cd /opt/code/code_5.3.1/pe_5.3.1.66482/pentaho-platform/user-console/
+ant dist deploy
+
+management.3ccloud.com
+ccclogic/Dolphin-42
+ grant index, create, select, insert, update, delete, drop, alter, lock tables on wikidb.* to'wikiuser'@'localhost' identified by 'password';
+================================================================================================================================================
+DIGITAL OCEAN INSTANCES DETAILS
+
+
+Droplet Name: rtp-proxy
+IP/Hostname: 192.241.191.25
+Username: root
+Password : weare@C25Sector62
+
+Droplet Name: Rtp-Proxy-2
+IP Address: 104.236.200.76
+Username: root
+Password:  t1tttctC25@62
+
+
+

@@ -1,0 +1,212 @@
+LS INSTALLATION
+================================================================================================================================================
+ADD BASE REPOSITORY FOR CENTOS RPM PACKAGES DONOT RUN ON PRODUCTION BECAUSE WE ARE USING AMAZON AMI THERE 
+================================================================================================================================================
+OPTIONAL THIS REPOSITORY FOR CENTSO DONOT RUN ON PRODUCTION BECAUSE WE ARE USING AMAZON AMI THERE 
+================================================================================================================================================
+yum -y install yum-plugin-priorities
+sed -i -e "s/\]$/\]\npriority=1/g" /etc/yum.repos.d/CentOS-Base.repo
+yum -y install epel-release
+sed -i -e "s/\]$/\]\npriority=5/g" /etc/yum.repos.d/epel.repo
+sed -i -e "s/enabled=1/enabled=0/g" /etc/yum.repos.d/epel.repo
+yum -y install http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el7.rf.x86_64.rpm
+sed -i -e "s/\]$/\]\npriority=10/g" /etc/yum.repos.d/rpmforge.repo
+sed -i -e "s/enabled = 1/enabled = 0/g" /etc/yum.repos.d/rpmforge.repo
+================================================================================================================================================
+MAIN REPOSITORY FOR CENTOS DONOT RUN ON PRODUCTION BECAUSE WE ARE USING AMAZON AMI THERE 
+================================================================================================================================================
+
+rpm -Uvh http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el7.rf.x86_64.rpm
+rpm -Uvh http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm
+rpm -Uvh http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el5.rf.x86_64.rpm
+rpm -Uvh http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
+rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
+rpm -Uvh http://dl.atrpms.net/all/atrpms-repo-7-7.el7.x86_64.rpm
+rpm -Uvh http://repo.webtatic.com/yum/el7/webtatic-release.rpm
+yum clean all
+sudo yum install epel-release
+sudo yum install epel-release-7-5.noarch.rpm
+sudo yum repolist
+yum install epel-release
+yum update
+sudo bash -c 'yum clean metadata && yum upgrade'
+================================================================================================================================================
+NOW HAVE TO DISABLE GPGCHECK FOR CENTOS BY SETTING GPGCHECK=0 IN vi /etc/yum.conf
+================================================================================================================================================
+vi /etc/yum.conf
+
+gpgcheck=0
+
+================================================================================================================================================
+INSTALL PACKAGES FOR BASE MACHINE FOR CENTOS AND FOR AMAZON AMI
+================================================================================================================================================
+yum update
+yum upgrade
+yum clean all
+yum install tomcat
+yum install httpd mod_ssl
+yum install ntp
+yum install vim
+yum install openssh-server
+
+==============================================================================================================================================================
+NOW INSTALL UNRAR FOR TO UNRAR RAR FILES  FOR CENTOS AND FOR AMAZON AMI
+==============================================================================================================================================================
+
+wget http://www.rarlab.com/rar/rarlinux-4.1.0.tar.gz
+tar  -xvzf rarlinux-4.1.0.tar.gz 
+cd rar
+./unrar 
+cp rar unrar /bin
+yum install libstdc++.i686  [IF NOT INSTALLED DON`T PANIC]
+yum install libstdc++.so.6
+
+================================================================================================================================================
+FOR DATA BASE INSTALLATION FOR BASE MACHINE FOR CENTOS AND AMAZON AMI
+================================================================================================================================================
+mkdir /root/wget
+
+mkdir /root/wget/mysql5.6
+cd /root/mysql5.6
+wget http://dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm 
+yum localinstall mysql-community-release-el6-5.noarch.rpm
+yum install mysql-community-server
+UPDATE mysql.user SET Password=PASSWORD('NewPassHere') WHERE User='root';
+FLUSH PRIVILEGES;
+quit;
+sudo service mysqld restart  
+
+
+================================================================================================================================================
+JAVA VERSION USED FOR OUR PRODUCT IS SUN JAVA NOT ORACLE INSTALL THIS VERSION OF JAVA FOR BASE MACHINE FOR CENTOS AND AMAZON AMI 
+================================================================================================================================================
+cd /opt
+wget http://chef-server.3ccloud.com:8098/downloads/jdk-7u51-linux-x64.tar.gz
+tar xvf jdk-7u51-linux-x64.tar.gz
+
+vim ~/.bashrc
+**ADD following line**
+export JAVA_HOME=/opt/jdk1.7.0_51
+**SAVE & CLOSE file**
+
+source ~/.bashrc
+
+cd /usr/bin
+ls -l |grep java
+
+rm java
+rm javac
+rm javaw
+(IF SYMBOLIC LINKS EXIST)
+
+ln -s /opt/jdk1.7.0_51/bin/java .
+ln -s /opt/jdk1.7.0_51/bin/javac .
+ln -s /opt/jdk1.7.0_51/bin/javaw .
+ln -s /opt/jdk1.7.0_51/bin/wsimport .
+=================================================================================================================================================
+MVN INSTALLTAION
+=================================================================================================================================================
+cd /opt/
+wget http://chef-server.3ccloud.com:8098/downloads/apache-maven-3.1.1-bin.tar.gz
+tar xvf apache-maven-3.1.1-bin.tar.gz
+cd /usr/bin/
+ln -s /opt/apache-maven-3.1.1/bin/mvn .
+mvn
+=================================================================================================================================================
+sudo vim /root/.m2/settings.xml
+<settings>
+<servers>
+    <server>
+      <id>nexus</id>
+      <username>deployment</username>
+      <password>webastra</password>
+    </server>
+  </servers>
+  <mirrors>
+    <mirror>
+      <id>nexus</id>
+      <mirrorOf>*</mirrorOf>
+      <url>http://188.226.208.137:8081/nexus/content/groups/public</url>
+    </mirror>
+  </mirrors>
+</settings>
+=================================================================================================================================================
+cd /opt
+mkdir code
+cd /opt/code/
+mkdir code_5.3.1
+cd /opt/code/code_5.3.1
+
+svn co https://svn.3clogic.com/webastra_portals/obelyx/ls_5.3.0.64951   [FOR LS]
+svn co https://svn.3clogic.com/webastra_portals/ds/ds_5.3.1.66714       [FOR DS]
+svn co https://svn.3clogic.com/webastra_portals/ms/ms_5.3.1.66794       [FOR MS]
+svn co https://svn.3clogic.com/webastra_portals/cs/cs_5.3.1.66803       [FOR CS]
+
+=================================================================================================================================================
+sudo vim ~/.bashrc
+
+export DEPLOY_PATH=/usr/share/tomcat7/webapps
+
+=================================================================================================================================================
+sudo vim /usr/share/tomcat7/conf/context.xml
+<Resource name="jdbc/logindb" auth="Container"
+          type="javax.sql.DataSource" username="rdstest" password="Alchemist201221"
+          driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://webastra-rds-ls.c8aqanvkjwjr.us-east-1.rds.amazonaws.com:3306/webastra?autoReconnect=true"
+          factory="org.apache.commons.dbcp.BasicDataSourceFactory"
+          maxActive="8" maxIdle="4"/>
+=================================================================================================================================================
+
+ ================================================================================================================================================
+NOW INSTALL UNRAR FOR TO UNRAR RAR FILES
+================================================================================================================================================
+
+wget http://www.rarlab.com/rar/rarlinux-4.1.0.tar.gz
+tar  -xvzf rarlinux-4.1.0.tar.gz 
+cd rar
+./unrar 
+cp rar unrar /bin
+===============================================================================================================================================
+yum install libstdc++.i686  
+yum install libstdc++.so.6
+yum install tomcat7
+yum install httpd mod_ssl
+
+================================================================================================================================================
+HOW TO SET UP JAVA PLATFORM FOR THE 3CLOGIC LS APPLICATION SERVER WE ARE USING SUN JAVA 
+================================================================================================================================================
+
+cd /opt
+wget http://chef-server.3ccloud.com:8098/downloads/jdk-7u51-linux-x64.tar.gz
+tar xvf jdk-7u51-linux-x64.tar.gz
+
+vim ~/.bashrc
+**ADD following line**
+export JAVA_HOME=/opt/jdk1.7.0_51
+**SAVE & CLOSE file**
+
+	source ~/.bashrc
+
+cd /usr/bin
+ls -l |grep java
+
+rm java
+rm javac
+rm javaw
+(IF SYMBOLIC LINKS EXIST)
+
+ln -s /opt/jdk1.7.0_51/bin/java .
+ln -s /opt/jdk1.7.0_51/bin/javac .
+ln -s /opt/jdk1.7.0_51/bin/javaw .
+ln -s /opt/jdk1.7.0_51/bin/wsimport .
+=================================================================================================================================================
+MVN INSTALLTAION FOR LS APPLICATION SERVER AFTER RUNNING MVN COMMAND SHOWN SOME ERROR DON`T PANIC
+=================================================================================================================================================
+cd /opt/
+wget http://chef-server.3ccloud.com:8098/downloads/apache-maven-3.1.1-bin.tar.gz
+tar xvf apache-maven-3.1.1-bin.tar.gz
+cd /usr/bin/
+ln -s /opt/apache-maven-3.1.1/bin/mvn .
+mvn
+
+
+

@@ -1,0 +1,59 @@
+Q1. How to Take Backup & Restoration of firewall configuration.
+
+Ans: 
+	system > DashBoard > status 	
+	See In System information.
+
+*********************************************************************************************
+Q2. How to Configure firewall Interface Wan1 & Wan2.
+
+Ans:	
+---->>>	STEP TO CREATE WAN1 INTERFACE 
+	Go to  System > Network > interface 
+	1. Click on Create New 
+	2. Enter Name = wan1
+	3. Select Address from three of the 
+		a) [*]Manual 
+		b) []DHCP
+		c) []PPPoE
+	4. now Enter IP Address in IP/NETMASk [14.141.172.86/255.255.255.252]
+	5. Now Select Admistrative check following of them 
+		a) [*]HTTPS
+		b) [*]PING 
+		c) [*]SSH
+		d) [*]SNMP
+		e) [*]TELNET 
+
+	6. Set the Wight  [90] 
+	7. Spillover Threshold	  [0] kbit/s
+	8. Click Ok
+		
+---->>>	STEP TO CREATE WAN2 INTERFACE 
+	
+	Go to  System > Network > interface 
+	1. Click on Create New 
+	2. Enter Name = wan2
+	3. Select Address from three of the 
+		a) [*]Manual 
+		b) []DHCP
+		c) []PPPoE
+	4. now Enter IP Address in IP/NETMASk [182.71.165.122/255.255.255.248]
+	
+	5. Now Select Admistrative check following of them 
+		a) [*]HTTPS
+		b) [*]PING 
+		c) [*]SSH
+		d) [*]SNMP
+		e) [*]TELNET 
+
+	6. Set the Wight  [10] 
+	7. Spillover Threshold	  [0] kbit/s
+	8. Click Ok	
+
+---->>>Now You have to enter DNS Settings
+	
+		a). DNS Settings  
+		b). Primary DNS Server [8.8.8.8]	
+		c). Secondary DNS Server  [4.2.2.2]	
+		d). Local Domain Name	
+

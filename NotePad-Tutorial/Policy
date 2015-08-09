@@ -1,0 +1,171 @@
+1. In Personal Window we don`t allow other software apart from official Software used in our Company
+2. In Personla Laptop We don`t provide any suport only internet connectivity support is given by us.
+3. We don`t allow personal window liecense in Company Laptop only linux o/s is allowed.
+4. We don`t provide any Lan Connectivity to Laptop user.
+5. We Don`t allow internet connctivity to Personal Mobile users.
+6. We Provide thinclient to RDP USER so that laptop is being issued to Other Employee.
+7. Don`t allw to plugin usb Charging cable in thinclient
+
+Department Of IT, Govt. Of NCT Of Delhi
+
+IT Security & Audit Policy
+
+1 Introduction
+
+1.1 Information Security
+Information Security Policies are the cornerstone of information security effectiveness.
+The Security Policy is intended to define what is expected from an organization with
+respect to security of Information Systems. The overall objective is to control or guide
+human behavior in an attempt to reduce the risk to information assets by accidental or
+deliberate actions.
+Information security policies underpin the security and well being of information
+resources. They are t
+
+2. Policy For General Users 
+
+2.1 Using Floppies/ CD/ Flash Drives 
+
+
+1. Floppy should be used in consultation with system administrator/incharge computer center and should be scanned before use.
+
+2. Unofficial Floppies, CDs or Flash Drives should not be used on office systems.
+
+3. Floppy should be write-protected if data is to be transferred from floppy to system. 
+
+
+2.2 Password
+
+1. Keep the system screen saver enabled with password protection.
+
+2. Donít share or disclose your password.
+
+3. User should not have easily detectable passwords for Network access, screensaver etc.
+
+4. A strong password must be as long as possible, include mixed-case letters,include digits and punctuation marks, not be based on 
+   any personal information, not be based on any dictionary word, in any language.
+
+5. Never use the same password twice.
+
+6. Change password at regular intervals. 
+
+
+
+2.3 Backup
+
+1. Backup should be maintained regularly on the space provided on central server of the department or on the storage media as per department policy.
+
+2. Keep paper copy of server configuration file.
+
+3. Keep the DATs or other removable media in a secure location away from the computer.
+
+4. Always backup the data before leaving the workstation.
+
+5. For sensitive and important data offsite backup should be used
+
+
+
+
+ IT Security & Audit Policy
+
+2.4 Physical Safety of System
+
+1. Protect the system from unauthorized use, loss or damage, e.g. the door should be locked when not in the office.
+
+2. Keep portable equipment secure.
+
+3. Position monitor and printers so that others cannot see sensitive data.
+
+4. Keep floppy disks and other media in a secure place.
+
+5. Seek advice on disposal of equipment.
+
+6. Report any loss of data or accessories to the System Administrator/incharge computer center.
+
+7. Keep the system and sensitive data secure from outsiders.
+
+8. Get authorization before taking equipment off-site.
+
+9. Take care when moving equipment (Read instruction on moving equipment).
+
+10. Install UPS system with adequate battery backups to avoid any data loss or corruption due to power failure.
+
+11. System should be properly shut down before leaving the office.
+
+12. Log-off the system if you are leaving your seat.
+
+13. Never remove the cables when your PC is powered ON since this can cause an electrical short circuit.
+
+14. Do not stop scandisk if system prompts to run it at the time of system startup.
+
+15. Always use mouse on mouse pad.
+
+16. Be gentle while handling keyboard and mouse.
+
+17. Do not open case of the hardware.
+
+18. Make sure that there is some slack in the cables attached to your system.
+
+
+2.5 Computer Files
+
+1. All file level security depends upon the file system. Only the most secure file system should be chosen for the server.
+  Then user permission for individual files, folders, drives should be set.
+
+2. Any default shares should be removed.
+
+3. Only required file and object shares should be enabled on the server.
+
+4. Never download or run attached files from unknown email ID.
+
+5. Always keep files in the computer in organized manner for easy accessibility. If required create new folders and sub-folders.
+
+6. Avoid creating junk files and folders.
+
+7. System files and libraries should not be accessed as it can cause malfunctioning of system.
+
+8. When transferring data, be sure it is going to the destination. If asked "Would you like to replace the existing file " make sure, before clicking "yes". 
+
+
+2.6 General Instructions
+
+
+1. In case of uncertainty about a task, make sure there is a copy of the data to restore from.
+
+2. Follow instructions or procedures that comes from System administrator/Incharge computer centre time to time.
+
+3. Users are not supposed to do his or her personal work on computers.
+
+4. Please intimate System administrator/Incharge computer centre in case of system malfunction.
+
+5. User should always work on his/her allotted machines. In case of any urgency/emergency user may use otherís machine with consultation of System administrator/Incharge computer centre.
+
+6. Antivirus software should be updated timely in consultation with System Administrator/Incharge computer centre.
+
+7. Donít give others the opportunity to look over your shoulder if you are workingon sensitive data/contents.
+
+8. Do not use unnecessary shareware.
+
+9. Do not install or copy software on system without permission of System administrator/Incharge computer centre.
+
+10. Avoid unnecessary connectivity of Internet.IT Security & Audit Policy
+
+11. Donít panic in case system hangs. Report it your IT Nodal Officer/System Administrator/Incharge computer centre.
+
+12. If lock and key system is available then user should ensure the security of all the parts of the computer.
+
+13. Please ensure that preinstalled Antivirus is running on the system.
+
+14. Food and drinks should not be placed near systems. Cup of Tea/ Coffee or water glass should not be on CPU or Monitor or Key Board.
+
+15. Always power off the system when cleaning it.
+
+16. Never use wet cloth for wiping the screen.
+
+17. Never shut the system down while programs are running. The open files will, more likely, become truncated and non-functional.
+
+18. Never stack books/ files or other materials on the CPU.
+
+19. Place the cover on the computers when you close the computers at the end of the day. 
+
+
+

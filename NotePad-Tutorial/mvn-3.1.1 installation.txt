@@ -1,0 +1,15 @@
+cd /opt
+wget http://chef-server.3ccloud.com:8098/downloads/apache-maven-3.1.1-bin.tar.gz
+tar xvf apache-maven-3.1.1-bin.tar.gz
+
+vim ~/.bashrc
+
+**ADD following line**
+export M2_HOME=/opt/apache-maven-3.1.1
+**SAVE & CLOSE file**
+
+source ~/.bashrc
+
+cd /usr/bin
+
+ln -s /opt/apache-maven-3.1.1/bin/mvn .
